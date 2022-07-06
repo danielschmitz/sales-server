@@ -1,6 +1,6 @@
 const router = require('express').Router()
-const NotFoundError = require('../../errors/NotFoundError')
 const db = require('../db')
+const NotFoundError = require('../errors/NotFoundError')
 
 router.get('/categories', async (req, res) => {
     res.json(await db('categories').orderBy('id'))
