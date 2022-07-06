@@ -1,6 +1,6 @@
 module.exports = app => {
   app.use(async (err, req, res, _next) => {
-    const errorCode = err.name === 'NotFoundError' ? 404 : 500
-    res.status(errorCode).send({ message: err.message, code: errorCode, name: err.name })
+    const httpCode = err.code || 500
+    res.status(httpCode).send({ message: err.message, code: httpCode, name: err.name })
   })
 }
