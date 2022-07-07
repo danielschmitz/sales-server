@@ -1,0 +1,40 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Saler Server - API",
+        "version": "1.0",
+        "description": "Sales Server API REST Operations",
+        "contact": {
+            "name": "Daniel Schmitz",
+            "email": "danieljfa@gmail.com",
+            "url": "https://github.com/danielschmitz"
+        }
+    },
+    "servers": [
+        {
+            "url": "http://localhost:3000/api",
+            "description": "Development API Server"
+        }
+    ],
+    "tags": [
+        {
+            "name": "Categories"
+        }
+    ],
+    "paths": {
+        "/categories": {
+            "get": {
+                "tags": [
+                    "Categories"
+                ],
+                "description": "Get All Categories",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        }
+    }
+}
