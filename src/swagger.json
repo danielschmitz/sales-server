@@ -52,6 +52,46 @@
           }
         }
       }
+    },
+    "/category": {
+      "post": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "Create a new Category",
+        "description": "",
+        "parameters": [
+          {
+            "name": "category",
+            "in": "body",
+            "description": "Category Data",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Category"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Category": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "Category Name"
+        },
+        "description": {
+          "type": "string",
+          "example": "Category Description"
+        }
+      }
     }
   }
 }

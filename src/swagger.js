@@ -12,7 +12,13 @@ const doc = {
         }
     },
     host: 'localhost:3000',
-    basePath: '/api'
+    basePath: '/api',
+    definitions: {
+        Category: {
+            name: "Category Name",
+            description: "Category Description"
+        },
+    }
 }
 
 const outputFile = './src/swagger.json'

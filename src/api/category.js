@@ -19,4 +19,29 @@ router.get('/category/:id', async (req, res) => {
     res.json(result)
 })
 
+router.post('/category', async (req, res) => {
+    // #swagger.tags = ['Categories']
+    // #swagger.summary = 'Create a new Category'
+    /*	#swagger.parameters['category'] = {
+            in: 'body',
+            description: 'Category Data',
+            required: true,
+            schema: { $ref: "#/definitions/Category" }
+    } */
+    const category = req.body
+    const { name, description } = category
+    const checkName = await db('categories').where({ name }).first()
+    if (checkName !== undefined) throw new Error('There is already a category with that name')
+
+    const result = await db('categories').insert({
+        name,
+        description
+    }).returning('id')
+
+    const id = result[0]
+
+    res.json(await db('categories').where({ id }).first())
+})
+
+
 module.exports = router
