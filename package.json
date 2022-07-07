@@ -6,8 +6,8 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
-    "swagger": "node ./swagger.js",
-    "migrate": "knex migrate:rollback --all --env development && knex migrate:latest --env development  && knex seed:run --env development "
+    "swagger": "node src/swagger.js",
+    "createdb": "knex migrate:rollback --all --env development && knex migrate:latest --env development  && knex seed:run --env development "
   },
   "keywords": [],
   "author": "Daniel Schmitz",
