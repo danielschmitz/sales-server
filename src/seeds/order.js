@@ -1,5 +1,5 @@
 
-exports.seed = function(knex) {
+exports.seed = function (knex) {
   // Deletes ALL existing entries
   return knex('orders').del()
     .then(async function () {
@@ -17,15 +17,15 @@ exports.seed = function(knex) {
       ).returning('id')
 
       return knex('orders').insert([
-       {
-         "orderDate": Date.now(),
-         "shippedDate": null,
-         "freight": 10.2,
-         "customer_id": 1,
-         "employee_id": 1,
-         "shipper_id": 1,
-         "to": addressShipId
-       }
-      ]);
-    });
-};
+        {
+          "orderDate": Date.now(),
+          "shippedDate": null,
+          "freight": 10.2,
+          "customer_id": 1,
+          "employee_id": 1,
+          "shipper_id": 1,
+          "to": addressShipId
+        }
+      ])
+    })
+}

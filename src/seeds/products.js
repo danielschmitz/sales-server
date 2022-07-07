@@ -1,6 +1,6 @@
 
 
-exports.seed = function(knex, Promise) {
+exports.seed = function (knex, _Promise) {
   // Deletes ALL existing entries
   return knex('products').del()
     .then(function () {
@@ -24,6 +24,6 @@ exports.seed = function(knex, Promise) {
           "category_id": 1,
           "discontinued": false,
         },
-      ]);
-    });
-};
+      ])
+    })
+}

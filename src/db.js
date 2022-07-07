@@ -1,3 +1,4 @@
+/*global process*/
 require('dotenv').config()
 const knexfile = require('../knexfile')
 

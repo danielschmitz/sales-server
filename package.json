@@ -7,12 +7,14 @@
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
     "swagger": "node src/swagger.js",
-    "createdb": "knex migrate:rollback --all --env development && knex migrate:latest --env development  && knex seed:run --env development "
+    "createdb": "knex migrate:rollback --all --env development && knex migrate:latest --env development  && knex seed:run --env development ",
+    "eslint": "npx eslint . --ext .js"
   },
   "keywords": [],
   "author": "Daniel Schmitz",
   "license": "MIT",
   "devDependencies": {
+    "eslint": "^8.19.0",
     "nodemon": "^2.0.19",
     "swagger-autogen": "^2.21.5"
   },

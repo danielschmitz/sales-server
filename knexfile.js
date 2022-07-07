@@ -1,5 +1,5 @@
 // Update with your config settings.
-
+/*global process*/
 /**
  * @type { Object.<string, import("knex").Knex.Config> }
  */

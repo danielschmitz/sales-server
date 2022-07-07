@@ -1,6 +1,6 @@
 
 
-exports.seed = function(knex, Promise) {
+exports.seed = function (knex, _Promise) {
   // Deletes ALL existing entries
   return knex('categories').del()
     .then(function () {
@@ -38,6 +38,6 @@ exports.seed = function(knex, Promise) {
           "description": "Seaweed and fish",
           "name": "Seafood"
         }
-      ]);
-    });
-};
+      ])
+    })
+}

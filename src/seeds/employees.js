@@ -54,4 +54,4 @@ exports.seed = async function (knex) {
 
   return [bossId, employeeId1, employeeId2]
 
-};
+}

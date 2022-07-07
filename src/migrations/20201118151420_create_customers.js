@@ -1,4 +1,4 @@
-exports.up = function (knex, Promise) {
+exports.up = function (knex, _Promise) {
     return knex.schema.createTable('customers', table => {
         table.increments('id').primary()
         table.string('contactName', 100).notNullable()
@@ -6,8 +6,8 @@ exports.up = function (knex, Promise) {
         table.integer('address_id').unsigned()
         table.foreign('address_id').references('Addresses.id')
     })
-};
+}
 
-exports.down = function (knex, Promise) {
+exports.down = function (knex, _Promise) {
     return knex.schema.dropTable('customers')
-};
+}
