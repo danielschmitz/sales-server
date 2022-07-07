@@ -15,6 +15,11 @@ const doc = {
     basePath: '/api',
     definitions: {
         Category: {
+            id: 1,
+            name: "Category Name",
+            description: "Category Description"
+        },
+        AddCategory: {
             name: "Category Name",
             description: "Category Description"
         },

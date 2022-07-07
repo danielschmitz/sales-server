@@ -67,13 +67,19 @@
             "description": "Category Data",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Category"
+              "$ref": "#/definitions/AddCategory"
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Category registered successfully.",
+            "schema": {
+              "$ref": "#/definitions/Category"
+            }
+          },
+          "500": {
+            "description": "There is already a category with that name"
           }
         }
       }
@@ -81,6 +87,23 @@
   },
   "definitions": {
     "Category": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number",
+          "example": 1
+        },
+        "name": {
+          "type": "string",
+          "example": "Category Name"
+        },
+        "description": {
+          "type": "string",
+          "example": "Category Description"
+        }
+      }
+    },
+    "AddCategory": {
       "type": "object",
       "properties": {
         "name": {
