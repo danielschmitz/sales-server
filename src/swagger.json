@@ -78,6 +78,9 @@
               "$ref": "#/definitions/Category"
             }
           },
+          "422": {
+            "description": "Invalid input"
+          },
           "500": {
             "description": "There is already a category with that name"
           }
