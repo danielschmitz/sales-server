@@ -6,13 +6,15 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
+    "swagger": "node ./swagger.js",
     "migrate": "knex migrate:rollback --all --env development && knex migrate:latest --env development  && knex seed:run --env development "
   },
   "keywords": [],
   "author": "Daniel Schmitz",
   "license": "MIT",
   "devDependencies": {
-    "nodemon": "^2.0.19"
+    "nodemon": "^2.0.19",
+    "swagger-autogen": "^2.21.5"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",

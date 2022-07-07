@@ -1,40 +1,57 @@
 {
-    "openapi": "3.0.0",
-    "info": {
-        "title": "Saler Server - API",
-        "version": "1.0",
-        "description": "Sales Server API REST Operations",
-        "contact": {
-            "name": "Daniel Schmitz",
-            "email": "danieljfa@gmail.com",
-            "url": "https://github.com/danielschmitz"
-        }
-    },
-    "servers": [
-        {
-            "url": "http://localhost:3000/api",
-            "description": "Development API Server"
-        }
-    ],
-    "tags": [
-        {
-            "name": "Categories"
-        }
-    ],
-    "paths": {
-        "/categories": {
-            "get": {
-                "tags": [
-                    "Categories"
-                ],
-                "description": "Get All Categories",
-                "parameters": [],
-                "responses": {
-                    "200": {
-                        "description": "OK"
-                    }
-                }
-            }
-        }
+  "swagger": "2.0",
+  "info": {
+    "title": "Sales Server",
+    "description": "Documentation API",
+    "version": "1.0",
+    "contact": {
+      "name": "Daniel Schmitz",
+      "email": "danieljfa@gmail.com",
+      "url": "https://github.com/danielschmitz"
     }
+  },
+  "host": "localhost:3000",
+  "basePath": "/api",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/categories": {
+      "get": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "Get All Categories",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/category/{id}": {
+      "get": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "Get a Category by ID",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
 }
