@@ -26,7 +26,16 @@
         "parameters": [],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "A list of categories",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CategoryResult"
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
           }
         }
       }
@@ -103,7 +112,7 @@
         "tags": [
           "Categories"
         ],
-        "summary": "Delete a Category by ID",
+        "summary": "Delete a Category",
         "description": "",
         "parameters": [
           {
@@ -189,6 +198,26 @@
         "description": {
           "type": "string",
           "example": "Category Description"
+        }
+      }
+    },
+    "Categories": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "example": 2
+          },
+          "name": {
+            "type": "string",
+            "example": "Category Name 2"
+          },
+          "description": {
+            "type": "string",
+            "example": "Category Description 2"
+          }
         }
       }
     }
