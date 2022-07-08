@@ -200,26 +200,6 @@
           "example": "Category Description"
         }
       }
-    },
-    "Categories": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "number",
-            "example": 2
-          },
-          "name": {
-            "type": "string",
-            "example": "Category Name 2"
-          },
-          "description": {
-            "type": "string",
-            "example": "Category Description 2"
-          }
-        }
-      }
     }
   }
 }
