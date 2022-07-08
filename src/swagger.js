@@ -3,7 +3,7 @@ const swaggerAutogen = require('swagger-autogen')()
 const doc = {
     info: {
         title: 'Sales Server',
-        description: 'Documentation API',
+        description: 'Documentation API. https://github.com/danielschmitz/sales-server',
         version: '1.0',
         contact: {
             name: 'Daniel Schmitz',
