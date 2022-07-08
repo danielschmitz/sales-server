@@ -2,7 +2,17 @@ const router = require('express').Router()
 const db = require('../db')
 const BadInputError = require('../errors/BadInput')
 const NotFoundError = require('../errors/NotFoundError')
-const joischema = require('../joischema')
+const Joi = require('joi')
+
+
+const categorySchema = Joi.object({
+    name: Joi.string()
+        .min(3)
+        .max(30)
+        .required(),
+    description: Joi.string()
+        .max(30)
+})
 
 router.get('/categories', async (req, res) => {
     // #swagger.tags = ['Categories']
@@ -32,7 +42,7 @@ router.post('/category', async (req, res) => {
     const category = req.body
 
     try {
-        await joischema.category.validateAsync(category)
+        await categorySchema.validateAsync(category)
     } catch (error) {
         // #swagger.responses[422] = { description: 'Invalid input' }
         throw new BadInputError(error.message)
