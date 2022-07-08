@@ -51,6 +51,44 @@
             "description": "OK"
           }
         }
+      },
+      "put": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "Edit a Category",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "category",
+            "in": "body",
+            "description": "Category Data",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Category"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Category registered successfully.",
+            "schema": {
+              "$ref": "#/definitions/CategoryResult"
+            }
+          },
+          "422": {
+            "description": "Invalid input"
+          },
+          "500": {
+            "description": "There is already a category with that name"
+          }
+        }
       }
     },
     "/category": {
@@ -67,7 +105,7 @@
             "description": "Category Data",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/AddCategory"
+              "$ref": "#/definitions/Category"
             }
           }
         ],
@@ -75,7 +113,7 @@
           "200": {
             "description": "Category registered successfully.",
             "schema": {
-              "$ref": "#/definitions/Category"
+              "$ref": "#/definitions/CategoryResult"
             }
           },
           "422": {
@@ -89,7 +127,7 @@
     }
   },
   "definitions": {
-    "Category": {
+    "CategoryResult": {
       "type": "object",
       "properties": {
         "id": {
@@ -106,7 +144,7 @@
         }
       }
     },
-    "AddCategory": {
+    "Category": {
       "type": "object",
       "properties": {
         "name": {

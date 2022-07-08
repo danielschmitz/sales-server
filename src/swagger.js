@@ -14,12 +14,12 @@ const doc = {
     host: 'localhost:3000',
     basePath: '/api',
     definitions: {
-        Category: {
+        CategoryResult: {
             id: 1,
             name: "Category Name",
             description: "Category Description"
         },
-        AddCategory: {
+        Category: {
             name: "Category Name",
             description: "Category Description"
         },
