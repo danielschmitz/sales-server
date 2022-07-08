@@ -36,7 +36,7 @@
         "tags": [
           "Categories"
         ],
-        "summary": "Get a Category by ID",
+        "summary": "Get a Category",
         "description": "",
         "parameters": [
           {
@@ -48,7 +48,16 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Category",
+            "schema": {
+              "$ref": "#/definitions/CategoryResult"
+            }
+          },
+          "404": {
+            "description": "Category not found"
+          },
+          "422": {
+            "description": "Invalid input"
           }
         }
       },
@@ -87,6 +96,32 @@
           },
           "500": {
             "description": "There is already a category with that name"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "Delete a Category by ID",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Category deleted"
+          },
+          "404": {
+            "description": "Category not found"
+          },
+          "422": {
+            "description": "Invalid input"
           }
         }
       }

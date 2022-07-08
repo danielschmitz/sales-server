@@ -22,11 +22,19 @@ router.get('/categories', async (req, res) => {
 
 router.get('/category/:id', async (req, res) => {
     // #swagger.tags = ['Categories']
-    // #swagger.summary = 'Get a Category by ID'
+    // #swagger.summary = 'Get a Category'
     const { id } = req.params
+
+    // #swagger.responses[422] = { description: 'Invalid input' }
     if (!parseInt(id)) throw new BadInputError('Invalid id')
+
     const result = await db('categories').where({ id })
+    // #swagger.responses[404] = { description: 'Category not found' }
     if (result.length == 0) throw new NotFoundError('Category not found')
+
+    /* #swagger.responses[200] = { 
+   schema: { "$ref": "#/definitions/CategoryResult" },
+   description: "Category" } */
     res.json(result)
 })
 
@@ -100,6 +108,26 @@ router.put('/category/:id', async (req, res) => {
     description: "Category registered successfully." } */
     res.json(await db('categories').where({ id }).first())
 })
+
+router.delete('/category/:id', async (req, res) => {
+    // #swagger.tags = ['Categories']
+    // #swagger.summary = 'Delete a Category'
+    const { id } = req.params
+
+    // #swagger.responses[422] = { description: 'Invalid input' }
+    if (!parseInt(id)) throw new BadInputError('Invalid id')
+
+    const result = await db('categories').where({ id })
+    // #swagger.responses[404] = { description: 'Category not found' }
+    if (result.length == 0) throw new NotFoundError('Category not found')
+
+    await db('categories').where({ id }).delete()
+
+    /* #swagger.responses[200] = { 
+  description: "Category deleted" } */
+    res.send(true)
+})
+
 
 
 module.exports = router
