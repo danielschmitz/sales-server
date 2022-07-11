@@ -23,11 +23,25 @@ const doc = {
             name: "Category Name",
             description: "Category Description"
         },
+        UserResult: {
+            id: 1,
+            name: "User Name",
+            email: "user@mail.com"
+        },
+        User: {
+            name: "User Name",
+            email: "user@mail.com",
+            password: "$2b$10$hfr0nhze4JXXiHwMXddNjOjyRUPyTEThj2T35u1v2WsOndpCvVWzi"
+
+        },
     }
 }
 
 const outputFile = './src/swagger.json'
-const endpointsFiles = ['./src/api/category.js']
+const endpointsFiles = [
+    './src/api/category.js',
+    './src/api/user.js'
+]
 
 swaggerAutogen(outputFile, endpointsFiles, doc)
 
