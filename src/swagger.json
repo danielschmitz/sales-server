@@ -168,6 +168,159 @@
           }
         }
       }
+    },
+    "/suppliers": {
+      "get": {
+        "tags": [
+          "Suppliers"
+        ],
+        "summary": "Get All Suppliers",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "A list of suppliers",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/SupplierResult"
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/supplier/{id}": {
+      "get": {
+        "tags": [
+          "Suppliers"
+        ],
+        "summary": "Get a Supplier",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Supplier",
+            "schema": {
+              "$ref": "#/definitions/SupplierResult"
+            }
+          },
+          "404": {
+            "description": "Supplier not found"
+          },
+          "422": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Suppliers"
+        ],
+        "summary": "Edit a Supplier",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "supplier",
+            "in": "body",
+            "description": "Supplier Data",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Supplier"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Supplier registered successfully.",
+            "schema": {
+              "$ref": "#/definitions/SupplierResult"
+            }
+          },
+          "422": {
+            "description": "Invalid input"
+          },
+          "500": {
+            "description": "There is already a supplier with that name"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Suppliers"
+        ],
+        "summary": "Delete a Supplier",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Supplier deleted"
+          },
+          "404": {
+            "description": "Supplier not found"
+          },
+          "422": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/supplier": {
+      "post": {
+        "tags": [
+          "Suppliers"
+        ],
+        "summary": "Create a new Supplier",
+        "description": "",
+        "parameters": [
+          {
+            "name": "supplier",
+            "in": "body",
+            "description": "Supplier Data",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Supplier"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Supplier registered successfully.",
+            "schema": {
+              "$ref": "#/definitions/SupplierResult"
+            }
+          },
+          "422": {
+            "description": "Invalid input"
+          },
+          "500": {
+            "description": "There is already a supplier with that name"
+          }
+        }
+      }
     }
   },
   "definitions": {
@@ -198,6 +351,110 @@
         "description": {
           "type": "string",
           "example": "Category Description"
+        }
+      }
+    },
+    "SupplierResult": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number",
+          "example": 1
+        },
+        "companyName": {
+          "type": "string",
+          "example": "Supplier Company Name"
+        },
+        "contactName": {
+          "type": "string",
+          "example": "Supplier Contact Name"
+        },
+        "contactEmail": {
+          "type": "string",
+          "example": "Supplier Contact Email"
+        },
+        "address_id": {
+          "type": "number",
+          "example": 10
+        },
+        "address": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "number",
+              "example": 10
+            },
+            "street": {
+              "type": "string",
+              "example": "Street Address"
+            },
+            "city": {
+              "type": "string",
+              "example": "City"
+            },
+            "region": {
+              "type": "string",
+              "example": "Region"
+            },
+            "postalCode": {
+              "type": "string",
+              "example": "Postal Code"
+            },
+            "country": {
+              "type": "string",
+              "example": "Country"
+            },
+            "phone": {
+              "type": "string",
+              "example": "Phone"
+            }
+          }
+        }
+      }
+    },
+    "Supplier": {
+      "type": "object",
+      "properties": {
+        "companyName": {
+          "type": "string",
+          "example": "Supplier Company Name"
+        },
+        "contactName": {
+          "type": "string",
+          "example": "Supplier Contact Name"
+        },
+        "contactEmail": {
+          "type": "string",
+          "example": "Supplier Contact Email"
+        },
+        "address": {
+          "type": "object",
+          "properties": {
+            "street": {
+              "type": "string",
+              "example": "Street Address"
+            },
+            "city": {
+              "type": "string",
+              "example": "City"
+            },
+            "region": {
+              "type": "string",
+              "example": "Region"
+            },
+            "postalCode": {
+              "type": "string",
+              "example": "Postal Code"
+            },
+            "country": {
+              "type": "string",
+              "example": "Country"
+            },
+            "phone": {
+              "type": "string",
+              "example": "Phone"
+            }
+          }
         }
       }
     }

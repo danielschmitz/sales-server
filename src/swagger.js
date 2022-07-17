@@ -23,11 +23,43 @@ const doc = {
             name: "Category Name",
             description: "Category Description"
         },
+        SupplierResult: {
+            id: 1,
+            companyName: "Supplier Company Name",
+            contactName: "Supplier Contact Name",
+            contactEmail: "Supplier Contact Email",
+            address_id: 10,
+            address: {
+                id: 10,
+                street: "Street Address",
+                city: "City",
+                region: "Region",
+                postalCode: "Postal Code",
+                country: "Country",
+                phone: "Phone" 
+            }
+        },
+        Supplier: {
+            companyName: "Supplier Company Name",
+            contactName: "Supplier Contact Name",
+            contactEmail: "Supplier Contact Email",
+            address: {
+                street: "Street Address",
+                city: "City",
+                region: "Region",
+                postalCode: "Postal Code",
+                country: "Country",
+                phone: "Phone" 
+            }
+        },
     }
 }
 
 const outputFile = './src/swagger.json'
-const endpointsFiles = ['./src/api/category.js']
+const endpointsFiles = [
+    './src/api/category.js', 
+    './src/api/supplier.js'
+]
 
 swaggerAutogen(outputFile, endpointsFiles, doc)
 
