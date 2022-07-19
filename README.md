@@ -1,6 +1,6 @@
 # Sales Server
 
-A Sales Server API with Node (Express+knex)
+A minimalistic Sales Server NodeJS API with Express, Knex (sqlite/pg) and Joi 
 
 Demo: soon
 
