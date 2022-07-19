@@ -248,7 +248,7 @@
         ],
         "responses": {
           "200": {
-            "description": "User registered successfully.",
+            "description": "User updated successfully.",
             "schema": {
               "$ref": "#/definitions/UserResult"
             }
@@ -257,7 +257,7 @@
             "description": "Invalid input"
           },
           "500": {
-            "description": "There is already a user with that name"
+            "description": "There is already a user with that email"
           }
         }
       },
@@ -318,6 +318,49 @@
           },
           "500": {
             "description": "There is already a email with that name"
+          }
+        }
+      }
+    },
+    "/user/changePassword/{id}": {
+      "put": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Change a password",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "user",
+            "in": "body",
+            "description": "User Data",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "password": {
+                  "type": "string",
+                  "example": "123@456"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Password updated successfully.",
+            "schema": {
+              "$ref": "#/definitions/UserResult"
+            }
+          },
+          "422": {
+            "description": "Invalid input"
           }
         }
       }
@@ -537,7 +580,7 @@
         },
         "password": {
           "type": "string",
-          "example": "$2b$10$hfr0nhze4JXXiHwMXddNjOjyRUPyTEThj2T35u1v2WsOndpCvVWzi"
+          "example": "123@456"
         }
       }
     },

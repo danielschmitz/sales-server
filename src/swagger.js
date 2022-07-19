@@ -31,7 +31,7 @@ const doc = {
         User: {
             name: "User Name",
             email: "user@mail.com",
-            password: "$2b$10$hfr0nhze4JXXiHwMXddNjOjyRUPyTEThj2T35u1v2WsOndpCvVWzi"
+            password: "123@456"
         },
         SupplierResult: {
             id: 1,
