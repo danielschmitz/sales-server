@@ -70,7 +70,8 @@ const endpointsFiles = [
     './src/api/category.js',
     './src/api/user.js',
     './src/api/category.js',
-    './src/api/supplier.js'
+    './src/api/supplier.js',
+    './src/api/auth.js',
 ]
 
 swaggerAutogen(outputFile, endpointsFiles, doc)

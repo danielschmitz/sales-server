@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const db = require('../db')
 const BadInputError = require('../errors/BadInput')
-const NotFoundError = require('../errors/NotFoundError')
+const NotFoundError = require('../errors/NotFound')
 const Joi = require('joi')
 
 
@@ -28,8 +28,8 @@ router.get('/suppliers', async (req, res) => {
     /* #swagger.responses[200] = { 
  schema: [ { $ref: "#/definitions/SupplierResult" } ],
  description: "A list of suppliers" } */
-    res.json(await 
-            db('suppliers')
+    res.json(await
+        db('suppliers')
             .orderBy('suppliers.id')
             .join('addresses', 'suppliers.address_id', 'addresses.id')
             .select(
@@ -39,9 +39,9 @@ router.get('/suppliers', async (req, res) => {
                 'addresses.region as region',
                 'addresses.postalCode as postalCode',
                 'addresses.country as country',
-                'addresses.phone as phone'                
-                )
-        )
+                'addresses.phone as phone'
+            )
+    )
 })
 
 router.get('/supplier/:id', async (req, res) => {

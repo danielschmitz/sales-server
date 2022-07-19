@@ -517,6 +517,62 @@
           }
         }
       }
+    },
+    "/auth/login": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Try to login",
+        "description": "",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "User Login Data",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string",
+                  "example": "user1@email.com"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "123@456"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User logged successfully.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "token": {
+                  "type": "string",
+                  "example": "token-hash"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "401": {
+            "description": "Incorrect password"
+          },
+          "404": {
+            "description": "No user found with that email"
+          },
+          "422": {
+            "description": "Invalid input"
+          }
+        }
+      }
     }
   },
   "definitions": {

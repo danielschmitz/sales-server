@@ -2,6 +2,7 @@
 
 module.exports = [
     'hello-world',
+    'auth',
     'category',
     'user',
     'supplier'
