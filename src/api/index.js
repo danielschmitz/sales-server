@@ -3,5 +3,6 @@
 module.exports = [
     'hello-world',
     'category',
+    'user',
     'supplier'
 ]

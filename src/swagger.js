@@ -23,6 +23,16 @@ const doc = {
             name: "Category Name",
             description: "Category Description"
         },
+        UserResult: {
+            id: 1,
+            name: "User Name",
+            email: "user@mail.com"
+        },
+        User: {
+            name: "User Name",
+            email: "user@mail.com",
+            password: "123@456"
+        },
         SupplierResult: {
             id: 1,
             companyName: "Supplier Company Name",
@@ -36,7 +46,7 @@ const doc = {
                 region: "Region",
                 postalCode: "Postal Code",
                 country: "Country",
-                phone: "Phone" 
+                phone: "Phone"
             }
         },
         Supplier: {
@@ -49,15 +59,17 @@ const doc = {
                 region: "Region",
                 postalCode: "Postal Code",
                 country: "Country",
-                phone: "Phone" 
+                phone: "Phone"
             }
-        },
+        }
     }
 }
 
 const outputFile = './src/swagger.json'
 const endpointsFiles = [
-    './src/api/category.js', 
+    './src/api/category.js',
+    './src/api/user.js',
+    './src/api/category.js',
     './src/api/supplier.js'
 ]
 
