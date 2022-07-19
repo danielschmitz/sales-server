@@ -13,6 +13,15 @@ const doc = {
     },
     host: 'localhost:3000',
     basePath: '/api',
+    securityDefinitions: {
+        bearerAuth: {
+            type: 'apiKey',
+            name: 'x-auth-token',
+            scheme: 'bearer',
+            in: 'header',
+        },
+    },
+    security: [{ bearerAuth: [] }],
     definitions: {
         CategoryResult: {
             id: 1,

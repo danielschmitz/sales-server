@@ -3,6 +3,7 @@ const db = require('../db')
 const BadInputError = require('../errors/BadInput')
 const NotFoundError = require('../errors/NotFound')
 const Joi = require('joi')
+const checkLogin = require('../libs/checkLogin')
 
 
 const categorySchema = Joi.object({
@@ -14,7 +15,7 @@ const categorySchema = Joi.object({
         .max(30)
 })
 
-router.get('/categories', async (req, res) => {
+router.get('/categories', checkLogin, async (req, res) => {
     // #swagger.tags = ['Categories']
     // #swagger.summary = 'Get All Categories'
 

@@ -2,6 +2,6 @@ const cors = require('cors')
 
 module.exports = app => {
     app.use(cors({
-        exposedHeaders: 'Authorization'
+        exposedHeaders: 'x-auth-token'
     }))
 }
