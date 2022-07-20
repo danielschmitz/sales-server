@@ -1,13 +1,11 @@
-const UnauthorizedError = require("../errors/UnauthorizedErrorError")
+
+var { expressjwt: jwt } = require("express-jwt")
+
+module.exports = jwt({
+    secret: "JWT_SECRET", // TODO:  process.env.JWT_SECRET
+    credentialsRequired: true,
+    algorithms: ['HS256'],
+    // by default, use Authorization header 
+})
 
 
-
-module.exports = (req, _res, next) => {
-
-    const token = req.headers['x-auth-token']
-
-    if (!token) throw new UnauthorizedError()
-
-
-    next()
-}

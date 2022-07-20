@@ -15,9 +15,13 @@ const categorySchema = Joi.object({
         .max(30)
 })
 
+
+
 router.get('/categories', checkLogin, async (req, res) => {
     // #swagger.tags = ['Categories']
     // #swagger.summary = 'Get All Categories'
+
+    // console.log(req.auth)
 
     /* #swagger.responses[200] = { 
  schema: [ { $ref: "#/definitions/CategoryResult" } ],

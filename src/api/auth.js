@@ -46,9 +46,6 @@ router.post('/auth/login', async (req, res) => {
         throw new NotFoundError('No user found with that email')
     }
 
-    console.log('1', password, user.password)
-
-
     const valid = await bcrypt.compare(password, user.password)
 
     if (!valid) {
@@ -61,7 +58,7 @@ router.post('/auth/login', async (req, res) => {
             id: user.id,
             email: user.email
         },
-        "MUST_USE_ENV_TOKEN",
+        "JWT_SECRET", // TODO:  process.env.JWT_SECRET
         { expiresIn: '1d' }
     )
 
