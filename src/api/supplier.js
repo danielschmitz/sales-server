@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const db = require('../db')
-const BadInputError = require('../errors/BadInput')
-const NotFoundError = require('../errors/NotFound')
+const BadInputError = require('../errors/BadInputError')
+const NotFoundError = require('../errors/NotFoundError')
 const Joi = require('joi')
 
 

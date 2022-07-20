@@ -2,9 +2,9 @@
 const bcrypt = require('bcrypt')
 const jsonwebtoken = require('jsonwebtoken')
 const db = require('../db')
-const BadInputError = require('../errors/BadInput')
-const UnauthorizedError = require('../errors/Unauthorized')
-const NotFoundError = require('../errors/NotFound')
+const BadInputError = require('../errors/BadInputError')
+const UnauthorizedError = require('../errors/UnauthorizedError')
+const NotFoundError = require('../errors/NotFoundError')
 const Joi = require('joi')
 const router = require('express').Router()
 
