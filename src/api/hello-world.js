@@ -1,4 +1,4 @@
-const auth = require('../auth')
+const Auth = require('../auth')
 
 const router = require('express').Router()
 
@@ -8,10 +8,10 @@ router.get('/hello-world', (req, res) => {
     res.send("hello world")
 })
 
-router.get('/hello-world-auth', auth.checkLogin, (req, res) => {
+router.get('/hello-world-auth', Auth.checkLogin, (req, res) => {
     // #swagger.tags = ['Main']
     // #swagger.summary = 'A simple Hello World with auth'
-    const { email } = auth.getData(req)
+    const { email } = Auth.getData(req)
     res.send("hello world " + email)
 })
 

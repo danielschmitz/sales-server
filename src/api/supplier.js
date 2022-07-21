@@ -3,6 +3,7 @@ const db = require('../db')
 const BadInputError = require('../errors/BadInputError')
 const NotFoundError = require('../errors/NotFoundError')
 const Joi = require('joi')
+const Auth = require('../auth')
 
 
 const supplierSchema = Joi.object({
@@ -100,7 +101,7 @@ router.post('/supplier', async (req, res) => {
     res.json(await db('suppliers').where({ id }).first())
 })
 
-router.put('/supplier/:id', async (req, res) => {
+router.put('/supplier/:id', Auth.checkLogin, async (req, res) => {
     // #swagger.tags = ['Suppliers']
     // #swagger.summary = 'Edit a Supplier'
     /*	#swagger.parameters['supplier'] = {

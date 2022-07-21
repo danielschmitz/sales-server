@@ -534,7 +534,11 @@
         "summary": "Get info about token",
         "description": "",
         "parameters": [],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
       }
     },
     "/auth/login": {
