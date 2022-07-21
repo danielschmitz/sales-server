@@ -7,6 +7,8 @@ const UnauthorizedError = require('../errors/UnauthorizedError')
 const NotFoundError = require('../errors/NotFoundError')
 const Joi = require('joi')
 const router = require('express').Router()
+const auth = require('../auth')
+require('dotenv').config()
 
 const userSchema = Joi.object({
     password: Joi.string()
@@ -17,6 +19,13 @@ const userSchema = Joi.object({
         .required()
         .email()
 })
+
+router.get('/auth/info', auth.checkLogin, (req, res) => {
+    // #swagger.tags = ['Auth']
+    // #swagger.summary = 'Get info about token'
+    res.json(req.auth)
+}
+)
 
 router.post('/auth/login', async (req, res) => {
     // #swagger.tags = ['Auth']
@@ -58,14 +67,15 @@ router.post('/auth/login', async (req, res) => {
             id: user.id,
             email: user.email
         },
-        "JWT_SECRET", // TODO:  process.env.JWT_SECRET
+        // eslint-disable-next-line no-undef
+        process.env.JWT_SECRET,
         { expiresIn: '1d' }
     )
 
     /* #swagger.responses[200] = { 
     schema: { "token": "token-hash" },
     description: "User logged successfully." } */
-    res.json({ token })
+    res.json({ token: `Bearer ${token}` })
 
 })
 

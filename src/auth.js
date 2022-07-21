@@ -1,9 +1,10 @@
-
+require('dotenv').config()
 var { expressjwt: jwt } = require("express-jwt")
 
 const auth = {
     checkLogin: jwt({
-        secret: "JWT_SECRET", // TODO:  process.env.JWT_SECRET
+        // eslint-disable-next-line no-undef
+        secret: process.env.JWT_SECRET,
         credentialsRequired: true,
         algorithms: ['HS256'],
         // by default, use Authorization header 

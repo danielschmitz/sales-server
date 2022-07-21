@@ -526,6 +526,17 @@
         }
       }
     },
+    "/auth/info": {
+      "get": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Get info about token",
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
     "/auth/login": {
       "post": {
         "tags": [
