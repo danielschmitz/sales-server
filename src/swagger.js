@@ -81,6 +81,8 @@ const endpointsFiles = [
     './src/api/category.js',
     './src/api/supplier.js',
     './src/api/auth.js',
+    './src/api/hello-world.js',
+
 ]
 
 swaggerAutogen(outputFile, endpointsFiles, doc)

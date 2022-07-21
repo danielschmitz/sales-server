@@ -581,6 +581,36 @@
           }
         }
       }
+    },
+    "/hello-world": {
+      "get": {
+        "tags": [
+          "Main"
+        ],
+        "summary": "A simple Hello World",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/hello-world-auth": {
+      "get": {
+        "tags": [
+          "Main"
+        ],
+        "summary": "A simple Hello World with auth",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "definitions": {

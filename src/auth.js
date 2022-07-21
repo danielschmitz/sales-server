@@ -1,7 +1,7 @@
 
 var { expressjwt: jwt } = require("express-jwt")
 
-module.exports = {
+const auth = {
     checkLogin: jwt({
         secret: "JWT_SECRET", // TODO:  process.env.JWT_SECRET
         credentialsRequired: true,
@@ -14,4 +14,5 @@ module.exports = {
     })
 }
 
+module.exports = auth
 
