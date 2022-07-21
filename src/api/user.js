@@ -4,6 +4,7 @@ const BadInputError = require('../errors/BadInputError')
 const NotFoundError = require('../errors/NotFoundError')
 const Joi = require('joi')
 const bcrypt = require('bcrypt')
+const Auth = require('../auth')
 
 
 
@@ -97,8 +98,7 @@ router.post('/user', async (req, res) => {
     )
 })
 
-router.put('/user/:id', async (req, res) => {
-    // TODO: Only logged user can change your data
+router.put('/user/:id', Auth.checkLogin, async (req, res) => {
     // #swagger.tags = ['Users']
     // #swagger.summary = 'Edit a User'
     /*	#swagger.parameters['user'] = {
@@ -111,6 +111,11 @@ router.put('/user/:id', async (req, res) => {
 
     // #swagger.responses[422] = { description: 'Invalid input' }
     if (!parseInt(id)) throw new BadInputError('Invalid id')
+
+    const userLogged = Auth.getData(req)
+
+    // #swagger.responses[422] = { description: 'Invalid input' }
+    if (userLogged.id != id) throw new BadInputError('Invalid id!')
 
     const user = req.body
 
@@ -145,8 +150,7 @@ router.put('/user/:id', async (req, res) => {
     )
 })
 
-router.put('/user/changePassword/:id', async (req, res) => {
-    // TODO: Only logged user can change your password
+router.put('/user/changePassword/:id', Auth.checkLogin, async (req, res) => {
     // #swagger.tags = ['Users']
     // #swagger.summary = 'Change a password'
     /*	#swagger.parameters['user'] = {
@@ -161,6 +165,12 @@ router.put('/user/changePassword/:id', async (req, res) => {
 
     // #swagger.responses[422] = { description: 'Invalid input' }
     if (!parseInt(id)) throw new BadInputError('Invalid id')
+
+    const userLogged = Auth.getData(req)
+
+    // #swagger.responses[422] = { description: 'Invalid input' }
+    if (userLogged.id != id) throw new BadInputError('Invalid id!')
+
 
     const { password } = req.body
 
