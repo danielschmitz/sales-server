@@ -1,11 +1,6 @@
 const router = require('express').Router()
-
-const AuthService = require('../services/AuthService')
-const auth = new AuthService()
-
-const CategoryService = require('../services/CategoryService')
-const categoryService = new CategoryService()
-
+const auth = require('../services/auth')
+const category = require('../services/category')
 
 router.get('/categories', async (req, res) => {
     /* 
@@ -15,7 +10,7 @@ router.get('/categories', async (req, res) => {
         schema: [ { $ref: "#/definitions/CategoryResult" } ],
         description: "A list of categories" }
     */
-    res.json(await categoryService.findAll())
+    res.json(await category.findAll())
 })
 
 router.get('/category/:id', async (req, res) => {
@@ -29,7 +24,7 @@ router.get('/category/:id', async (req, res) => {
         description: "Category" 
     } 
     */
-    res.json(await categoryService.findById(req.params.id))
+    res.json(await category.findById(req.params.id))
 })
 
 router.post('/category', auth.checkLogin, async (req, res) => {
@@ -48,7 +43,7 @@ router.post('/category', auth.checkLogin, async (req, res) => {
         schema: { "$ref": "#/definitions/CategoryResult" },
         description: "Category registered successfully." } 
     */
-    res.json(await categoryService.create(req.body))
+    res.json(await category.create(req.body))
 })
 
 router.put('/category/:id', auth.checkLogin, async (req, res) => {
@@ -67,7 +62,7 @@ router.put('/category/:id', auth.checkLogin, async (req, res) => {
         schema: { "$ref": "#/definitions/CategoryResult" },
         description: "Category registered successfully." }
     */
-    res.json(await categoryService.update(req.params.id, req.body))
+    res.json(await category.update(req.params.id, req.body))
 })
 
 router.delete('/category/:id', auth.checkLogin, async (req, res) => {
@@ -78,7 +73,7 @@ router.delete('/category/:id', auth.checkLogin, async (req, res) => {
     #swagger.responses[404] = { description: 'Category not found' }
     #swagger.responses[200] = {description: "Category deleted" } 
     */
-    res.send(await categoryService.delete(req.params.id))
+    res.send(await category.delete(req.params.id))
 })
 
 

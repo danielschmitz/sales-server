@@ -4,8 +4,7 @@ const BadInputError = require('../errors/BadInputError')
 const NotFoundError = require('../errors/NotFoundError')
 const Joi = require('joi')
 
-const AuthService = require('../services/AuthService')
-const auth = new AuthService()
+const auth = require('../services/auth')
 
 const supplierSchema = Joi.object({
     companyName: Joi.string()

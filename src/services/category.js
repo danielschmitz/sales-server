@@ -4,7 +4,7 @@ const NotFoundError = require("../errors/NotFoundError")
 const Joi = require('joi')
 const table = require("../constants/table")
 
-class CategoryService {
+class category {
     constructor() {
     }
     async validate(data) {
@@ -22,11 +22,6 @@ class CategoryService {
             throw new BadInputError(error.message)
         }
     }
-    async exists(id) {
-        const result = await db(table.categories).where({ id })
-        if (result.length == 0) throw new NotFoundError('Category not found')
-        return result
-    }
     /**
      * Get all Categories
      */
@@ -38,7 +33,9 @@ class CategoryService {
      */
     async findById(id) {
         if (!parseInt(id)) throw new BadInputError('Invalid id')
-        return await this.exists(id)
+        const result = await db(table.categories).where({ id })
+        if (result.length == 0) throw new NotFoundError('Category not found')
+        return result
     }
     /**
      * Create a new Category
@@ -78,9 +75,8 @@ class CategoryService {
      * Delete a category
      */
     async delete(id) {
-        if (!parseInt(id)) throw new BadInputError('Invalid id')
 
-        this.exists(id)
+        await this.findById(id) // check if category exists
 
         await db(table.categories).where({ id }).delete()
 
@@ -88,5 +84,5 @@ class CategoryService {
     }
 }
 
-module.exports = CategoryService
+module.exports = new category
 

@@ -4,14 +4,11 @@ const jwt = require("jsonwebtoken")
 const Joi = require('joi')
 const bcrypt = require('bcrypt')
 const jsonwebtoken = require('jsonwebtoken')
-
 const db = require("../db")
 const UnauthorizedError = require('../errors/UnauthorizedError')
 const BadInputError = require('../errors/BadInputError')
 const NotFoundError = require('../errors/NotFoundError')
 const table = require('../constants/table')
-
-
 
 const userSchema = Joi.object({
     password: Joi.string()
@@ -23,13 +20,12 @@ const userSchema = Joi.object({
         .email()
 })
 
-class AuthService {
+class auth {
     tryLogin = async (user) => {
         const { email, password } = user
         try {
             await userSchema.validateAsync({ email, password })
         } catch (error) {
-            // 
             throw new BadInputError(error.message)
         }
         const userDb = await db(table.users).where({ email }).first()
@@ -75,4 +71,4 @@ class AuthService {
     })
 }
 
-module.exports = AuthService
+module.exports = new auth

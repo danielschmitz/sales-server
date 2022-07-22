@@ -1,8 +1,5 @@
-
-const AuthService = require('../services/AuthService')
-const auth = new AuthService()
-
 const router = require('express').Router()
+const auth = require('../services/auth')
 
 router.get('/hello-world', (req, res) => {
     /* 
