@@ -23,12 +23,13 @@ const supplierSchema = Joi.object({
 })
 
 router.get('/suppliers', async (req, res) => {
-    // #swagger.tags = ['Suppliers']
-    // #swagger.summary = 'Get All Suppliers'
-
-    /* #swagger.responses[200] = { 
- schema: [ { $ref: "#/definitions/SupplierResult" } ],
- description: "A list of suppliers" } */
+    /*     
+    #swagger.tags = ['Suppliers']
+    #swagger.summary = 'Get All Suppliers'
+    #swagger.responses[200] = { 
+        schema: [ { $ref: "#/definitions/SupplierResult" } ],
+        description: "A list of suppliers" } 
+    */
     res.json(await
         db('suppliers')
             .orderBy('suppliers.id')
@@ -46,8 +47,10 @@ router.get('/suppliers', async (req, res) => {
 })
 
 router.get('/supplier/:id', async (req, res) => {
-    // #swagger.tags = ['Suppliers']
-    // #swagger.summary = 'Get a Supplier'
+    /* 
+    #swagger.tags = ['Suppliers']
+    #swagger.summary = 'Get a Supplier' 
+    */
     const { id } = req.params
 
     // #swagger.responses[422] = { description: 'Invalid input' }
@@ -57,21 +60,25 @@ router.get('/supplier/:id', async (req, res) => {
     // #swagger.responses[404] = { description: 'Supplier not found' }
     if (result.length == 0) throw new NotFoundError('Supplier not found')
 
-    /* #swagger.responses[200] = { 
-   schema: { "$ref": "#/definitions/SupplierResult" },
-   description: "Supplier" } */
+    /* 
+    #swagger.responses[200] = { 
+        schema: { "$ref": "#/definitions/SupplierResult" },
+        description: "Supplier" } 
+    */
     res.json(result)
 })
 
 router.post('/supplier', auth.checkLogin, async (req, res) => {
-    // #swagger.tags = ['Suppliers']
-    // #swagger.summary = '🔒️ Create a new Supplier'
-    /*	#swagger.parameters['supplier'] = {
+    /* 
+    #swagger.tags = ['Suppliers']
+    #swagger.summary = '🔒️ Create a new Supplier'
+    #swagger.parameters['supplier'] = {
             in: 'body',
             description: 'Supplier Data',
             required: true,
             schema: { $ref: "#/definitions/Supplier" }
-    } */
+    }
+    */
     const supplier = req.body
 
     try {
@@ -95,21 +102,26 @@ router.post('/supplier', auth.checkLogin, async (req, res) => {
 
     const id = result[0]
 
-    /* #swagger.responses[200] = { 
-     schema: { "$ref": "#/definitions/SupplierResult" },
-     description: "Supplier registered successfully." } */
+    /* 
+    #swagger.responses[200] = { 
+        schema: { "$ref": "#/definitions/SupplierResult" },
+        description: "Supplier registered successfully." 
+    } 
+    */
     res.json(await db('suppliers').where({ id }).first())
 })
 
 router.put('/supplier/:id', auth.checkLogin, async (req, res) => {
-    // #swagger.tags = ['Suppliers']
-    // #swagger.summary = '🔒️ Edit a Supplier'
-    /*	#swagger.parameters['supplier'] = {
+    /* 
+    #swagger.tags = ['Suppliers']
+    #swagger.summary = '🔒️ Edit a Supplier'
+    #swagger.parameters['supplier'] = {
             in: 'body',
             description: 'Supplier Data',
             required: true,
             schema: { $ref: "#/definitions/Supplier" }
-    } */
+    } 
+    */
     const { id } = req.params
     const supplier = req.body
 
@@ -128,15 +140,19 @@ router.put('/supplier/:id', auth.checkLogin, async (req, res) => {
 
     await db('suppliers').where({ id }).update({ name, description })
 
-    /* #swagger.responses[200] = { 
+    /* 
+    #swagger.responses[200] = { 
     schema: { "$ref": "#/definitions/SupplierResult" },
-    description: "Supplier registered successfully." } */
+    description: "Supplier registered successfully." } 
+    */
     res.json(await db('suppliers').where({ id }).first())
 })
 
 router.delete('/supplier/:id', auth.checkLogin, async (req, res) => {
-    // #swagger.tags = ['Suppliers']
-    // #swagger.summary = '🔒️ Delete a Supplier'
+    /* 
+    #swagger.tags = ['Suppliers']
+    #swagger.summary = '🔒️ Delete a Supplier' 
+    */
     const { id } = req.params
 
     // #swagger.responses[422] = { description: 'Invalid input' }
@@ -148,8 +164,7 @@ router.delete('/supplier/:id', auth.checkLogin, async (req, res) => {
 
     await db('suppliers').where({ id }).delete()
 
-    /* #swagger.responses[200] = { 
-  description: "Supplier deleted" } */
+    // #swagger.responses[200] = { description: "Supplier deleted" } 
     res.send(true)
 })
 

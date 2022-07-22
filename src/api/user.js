@@ -19,18 +19,21 @@ const userSchema = Joi.object({
 })
 
 router.get('/users', async (req, res) => {
-    // #swagger.tags = ['Users']
-    // #swagger.summary = 'Get All Users'
-
-    /* #swagger.responses[200] = { 
- schema: [ { $ref: "#/definitions/UserResult" } ],
- description: "A list of users" } */
+    /*   
+    #swagger.tags = ['Users']
+    #swagger.summary = 'Get All Users'
+    #swagger.responses[200] = { 
+    schema: [ { $ref: "#/definitions/UserResult" } ],
+            description: "A list of users" }  
+    */
     res.json(await db('users').select(['id', 'name', 'email']).orderBy('id'))
 })
 
 router.get('/user/:id', async (req, res) => {
-    // #swagger.tags = ['Users']
-    // #swagger.summary = 'Get a User'
+    /*
+    #swagger.tags = ['Users']
+    #swagger.summary = 'Get a User'
+    */
     const { id } = req.params
 
     // #swagger.responses[422] = { description: 'Invalid input' }
@@ -40,21 +43,26 @@ router.get('/user/:id', async (req, res) => {
     // #swagger.responses[404] = { description: 'User not found' }
     if (result.length == 0) throw new NotFoundError('User not found')
 
-    /* #swagger.responses[200] = { 
-   schema: { "$ref": "#/definitions/UserResult" },
-   description: "User" } */
+    /* 
+    #swagger.responses[200] = { 
+        schema: { "$ref": "#/definitions/UserResult" },
+        description: "User" 
+    } 
+    */
     res.json(result)
 })
 
 router.post('/user', async (req, res) => {
-    // #swagger.tags = ['Users']
-    // #swagger.summary = 'Create a new User'
-    /*	#swagger.parameters['user'] = {
-            in: 'body',
-            description: 'User Data',
-            required: true,
-            schema: { $ref: "#/definitions/User" }
-    } */
+    /* 
+        #swagger.tags = ['Users']
+        #swagger.summary = 'Create a new User'
+        #swagger.parameters['user'] = {
+                in: 'body',
+                description: 'User Data',
+                required: true,
+                schema: { $ref: "#/definitions/User" }
+        }
+    */
     const user = req.body
 
     try {
@@ -86,9 +94,11 @@ router.post('/user', async (req, res) => {
 
     const id = result[0]
 
-    /* #swagger.responses[200] = { 
-     schema: { "$ref": "#/definitions/UserResult" },
-     description: "User registered successfully." } */
+    /* 
+    #swagger.responses[200] = { 
+    schema: { "$ref": "#/definitions/UserResult" },
+    description: "User registered successfully." } 
+    */
     res.json(
         await db('users')
             .select(['id', 'name', 'email'])
@@ -98,14 +108,16 @@ router.post('/user', async (req, res) => {
 })
 
 router.put('/user/:id', auth.checkLogin, async (req, res) => {
-    // #swagger.tags = ['Users']
-    // #swagger.summary = '🔒️ Edit a User'
-    /*	#swagger.parameters['user'] = {
+    /* 
+    #swagger.tags = ['Users']
+    #swagger.summary = '🔒️ Edit a User'
+    #swagger.parameters['user'] = {
             in: 'body',
             description: 'User Data',
             required: true,
             schema: { $ref: "#/definitions/User" }
-    } */
+    } 
+    */
     const { id } = req.params
 
     // #swagger.responses[422] = { description: 'Invalid input' }
@@ -138,9 +150,12 @@ router.put('/user/:id', auth.checkLogin, async (req, res) => {
 
     await db('users').where({ id }).update({ name, email })
 
-    /* #swagger.responses[200] = { 
-    schema: { "$ref": "#/definitions/UserResult" },
-    description: "User updated successfully." } */
+    /* 
+    #swagger.responses[200] = { 
+        schema: { "$ref": "#/definitions/UserResult" },
+        description: "User updated successfully." 
+    } 
+    */
     res.json(
         await db('users')
             .select(['id', 'name', 'email'])
@@ -150,16 +165,18 @@ router.put('/user/:id', auth.checkLogin, async (req, res) => {
 })
 
 router.put('/user/changePassword/:id', auth.checkLogin, async (req, res) => {
-    // #swagger.tags = ['Users']
-    // #swagger.summary = '🔒️ Change a password'
-    /*	#swagger.parameters['user'] = {
+    /* 
+    #swagger.tags = ['Users']
+    #swagger.summary = '🔒️ Change a password'
+    #swagger.parameters['user'] = {
             in: 'body',
             description: 'User Data',
             required: true,
             schema: { 
                 "password": "123@456"
-             }
-    } */
+            }
+    } 
+    */
     const { id } = req.params
 
     // #swagger.responses[422] = { description: 'Invalid input' }
@@ -181,9 +198,11 @@ router.put('/user/changePassword/:id', auth.checkLogin, async (req, res) => {
 
     await db('users').where({ id }).update({ password: hash })
 
-    /* #swagger.responses[200] = { 
+    /* 
+    #swagger.responses[200] = { 
     schema: { "$ref": "#/definitions/UserResult" },
-    description: "Password updated successfully." } */
+    description: "Password updated successfully." } 
+    */
     res.json(
         await db('users')
             .select(['id', 'name', 'email'])
@@ -193,8 +212,10 @@ router.put('/user/changePassword/:id', auth.checkLogin, async (req, res) => {
 })
 
 router.delete('/user/:id', auth.checkLogin, async (req, res) => {
-    // #swagger.tags = ['Users']
-    // #swagger.summary = '🔒️ Delete a User'
+    /* 
+    #swagger.tags = ['Users']
+    #swagger.summary = '🔒️ Delete a User' 
+    */
     const { id } = req.params
 
     // #swagger.responses[422] = { description: 'Invalid input' }
@@ -206,8 +227,7 @@ router.delete('/user/:id', auth.checkLogin, async (req, res) => {
 
     await db('users').where({ id }).delete()
 
-    /* #swagger.responses[200] = { 
-  description: "User deleted" } */
+    // #swagger.responses[200] = { description: "User deleted" } */
     res.send(true)
 })
 

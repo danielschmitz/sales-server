@@ -16,18 +16,21 @@ const categorySchema = Joi.object({
 })
 
 router.get('/categories', async (req, res) => {
-    // #swagger.tags = ['Categories']
-    // #swagger.summary = 'Get All Categories'
-
-    /* #swagger.responses[200] = { 
- schema: [ { $ref: "#/definitions/CategoryResult" } ],
- description: "A list of categories" } */
+    /* 
+    #swagger.tags = ['Categories']
+    #swagger.summary = 'Get All Categories'
+    #swagger.responses[200] = { 
+        schema: [ { $ref: "#/definitions/CategoryResult" } ],
+        description: "A list of categories" }
+    */
     res.json(await db('categories').orderBy('id'))
 })
 
 router.get('/category/:id', async (req, res) => {
-    // #swagger.tags = ['Categories']
-    // #swagger.summary = 'Get a Category'
+    /* 
+    #swagger.tags = ['Categories']
+    #swagger.summary = 'Get a Category' 
+    */
     const { id } = req.params
 
     // #swagger.responses[422] = { description: 'Invalid input' }
@@ -37,21 +40,25 @@ router.get('/category/:id', async (req, res) => {
     // #swagger.responses[404] = { description: 'Category not found' }
     if (result.length == 0) throw new NotFoundError('Category not found')
 
-    /* #swagger.responses[200] = { 
-   schema: { "$ref": "#/definitions/CategoryResult" },
-   description: "Category" } */
+    /* 
+    #swagger.responses[200] = { 
+        schema: { "$ref": "#/definitions/CategoryResult" },
+        description: "Category" } 
+    */
     res.json(result)
 })
 
 router.post('/category', auth.checkLogin, async (req, res) => {
-    // #swagger.tags = ['Categories']
-    // #swagger.summary = '🔒️ Create a new Category'
-    /*	#swagger.parameters['category'] = {
+    /* 
+    #swagger.tags = ['Categories']
+    #swagger.summary = '🔒️ Create a new Category'
+        #swagger.parameters['category'] = {
             in: 'body',
             description: 'Category Data',
             required: true,
             schema: { $ref: "#/definitions/Category" }
-    } */
+        } 
+    */
     const category = req.body
 
     try {
@@ -75,21 +82,25 @@ router.post('/category', auth.checkLogin, async (req, res) => {
 
     const id = result[0]
 
-    /* #swagger.responses[200] = { 
-     schema: { "$ref": "#/definitions/CategoryResult" },
-     description: "Category registered successfully." } */
+    /* 
+    #swagger.responses[200] = { 
+        schema: { "$ref": "#/definitions/CategoryResult" },
+        description: "Category registered successfully." } 
+    */
     res.json(await db('categories').where({ id }).first())
 })
 
 router.put('/category/:id', auth.checkLogin, async (req, res) => {
-    // #swagger.tags = ['Categories']
-    // #swagger.summary = '🔒️ Edit a Category'
-    /*	#swagger.parameters['category'] = {
+    /* 
+    #swagger.tags = ['Categories']
+    #swagger.summary = '🔒️ Edit a Category'
+    #swagger.parameters['category'] = {
             in: 'body',
             description: 'Category Data',
             required: true,
             schema: { $ref: "#/definitions/Category" }
-    } */
+        } 
+    */
     const { id } = req.params
     const category = req.body
 
@@ -108,15 +119,19 @@ router.put('/category/:id', auth.checkLogin, async (req, res) => {
 
     await db('categories').where({ id }).update({ name, description })
 
-    /* #swagger.responses[200] = { 
-    schema: { "$ref": "#/definitions/CategoryResult" },
-    description: "Category registered successfully." } */
+    /* 
+    #swagger.responses[200] = { 
+        schema: { "$ref": "#/definitions/CategoryResult" },
+        description: "Category registered successfully." } 
+    */
     res.json(await db('categories').where({ id }).first())
 })
 
 router.delete('/category/:id', auth.checkLogin, async (req, res) => {
-    // #swagger.tags = ['Categories']
-    // #swagger.summary = '🔒️ Delete a Category'
+    /* 
+    #swagger.tags = ['Categories']
+    #swagger.summary = '🔒️ Delete a Category' 
+    */
     const { id } = req.params
 
     // #swagger.responses[422] = { description: 'Invalid input' }
@@ -128,8 +143,7 @@ router.delete('/category/:id', auth.checkLogin, async (req, res) => {
 
     await db('categories').where({ id }).delete()
 
-    /* #swagger.responses[200] = { 
-  description: "Category deleted" } */
+    // #swagger.responses[200] = {description: "Category deleted" } 
     res.send(true)
 })
 

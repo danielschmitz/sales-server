@@ -21,25 +21,28 @@ const userSchema = Joi.object({
 })
 
 router.get('/auth/info', auth.checkLogin, (req, res) => {
-    // #swagger.tags = ['Auth']
-    // #swagger.summary = 'Get info about token'
+    /* 
+    #swagger.tags = ['Auth']
+    #swagger.summary = 'Get info about token' 
+    */
     res.json(req.auth)
 }
 )
 
 router.post('/auth/login', async (req, res) => {
-    // #swagger.tags = ['Auth']
-    // #swagger.summary = 'Try to login'
-
-    /*	#swagger.parameters['user'] = {
-       in: 'body',
-       description: 'User Login Data',
-       required: true,
-       schema: { 
+    /* 
+    #swagger.tags = ['Auth']
+    #swagger.summary = 'Try to login'
+    #swagger.parameters['user'] = {
+        in: 'body',
+        description: 'User Login Data',
+        required: true,
+        schema: { 
         "email": "user1@email.com",
         "password": "123@456"
         }
-    } */
+    } 
+    */
     const { email, password } = req.body
 
     try {
@@ -72,9 +75,11 @@ router.post('/auth/login', async (req, res) => {
         { expiresIn: '1d' }
     )
 
-    /* #swagger.responses[200] = { 
-    schema: { "token": "token-hash" },
-    description: "User logged successfully." } */
+    /* 
+        #swagger.responses[200] = { 
+            schema: { "token": "token-hash" },
+            description: "User logged successfully." } 
+    */
     res.json({ token })
 
 })
