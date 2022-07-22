@@ -4,16 +4,11 @@ const BadInputError = require('../errors/BadInputError')
 const NotFoundError = require('../errors/NotFoundError')
 const Joi = require('joi')
 const auth = require('../auth')
+const CategoryService = require('../services/CategoryService')
 
 
-const categorySchema = Joi.object({
-    name: Joi.string()
-        .min(3)
-        .max(30)
-        .required(),
-    description: Joi.string()
-        .max(30)
-})
+
+const categoryService = new CategoryService()
 
 router.get('/categories', async (req, res) => {
     /* 
@@ -23,71 +18,40 @@ router.get('/categories', async (req, res) => {
         schema: [ { $ref: "#/definitions/CategoryResult" } ],
         description: "A list of categories" }
     */
-    res.json(await db('categories').orderBy('id'))
+    res.json(await categoryService.findAll())
 })
 
 router.get('/category/:id', async (req, res) => {
     /* 
     #swagger.tags = ['Categories']
     #swagger.summary = 'Get a Category' 
-    */
-    const { id } = req.params
-
-    // #swagger.responses[422] = { description: 'Invalid input' }
-    if (!parseInt(id)) throw new BadInputError('Invalid id')
-
-    const result = await db('categories').where({ id })
-    // #swagger.responses[404] = { description: 'Category not found' }
-    if (result.length == 0) throw new NotFoundError('Category not found')
-
-    /* 
+    #swagger.responses[422] = { description: 'Invalid input' }
+    #swagger.responses[404] = { description: 'Category not found' }
     #swagger.responses[200] = { 
         schema: { "$ref": "#/definitions/CategoryResult" },
-        description: "Category" } 
+        description: "Category" 
+    } 
     */
-    res.json(result)
+    res.json(await categoryService.findById(req.params.id))
 })
 
 router.post('/category', auth.checkLogin, async (req, res) => {
     /* 
     #swagger.tags = ['Categories']
     #swagger.summary = '🔒️ Create a new Category'
-        #swagger.parameters['category'] = {
-            in: 'body',
-            description: 'Category Data',
-            required: true,
-            schema: { $ref: "#/definitions/Category" }
-        } 
-    */
-    const category = req.body
-
-    try {
-        await categorySchema.validateAsync(category)
-    } catch (error) {
-        // #swagger.responses[422] = { description: 'Invalid input' }
-        throw new BadInputError(error.message)
-    }
-
-
-    const { name, description } = category
-    const checkName = await db('categories').where({ name }).first()
-
-    // #swagger.responses[500] = { description: 'There is already a category with that name' }
-    if (checkName !== undefined) throw new Error('There is already a category with that name')
-
-    const result = await db('categories').insert({
-        name,
-        description
-    }).returning('id')
-
-    const id = result[0]
-
-    /* 
+    #swagger.parameters['category'] = {
+        in: 'body',
+        description: 'Category Data',
+        required: true,
+        schema: { $ref: "#/definitions/Category" }
+    } 
+    #swagger.responses[422] = { description: 'Invalid input' }
+    #swagger.responses[500] = { description: 'There is already a category with that name' }
     #swagger.responses[200] = { 
         schema: { "$ref": "#/definitions/CategoryResult" },
         description: "Category registered successfully." } 
     */
-    res.json(await db('categories').where({ id }).first())
+    res.json(categoryService.create(req.body))
 })
 
 router.put('/category/:id', auth.checkLogin, async (req, res) => {
