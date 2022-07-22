@@ -9,6 +9,7 @@ const db = require("../db")
 const UnauthorizedError = require('../errors/UnauthorizedError')
 const BadInputError = require('../errors/BadInputError')
 const NotFoundError = require('../errors/NotFoundError')
+const table = require('../constants/table')
 
 
 
@@ -31,7 +32,7 @@ class AuthService {
             // 
             throw new BadInputError(error.message)
         }
-        const userDb = await db('users').where({ email }).first()
+        const userDb = await db(table.users).where({ email }).first()
         if (!userDb) {
             throw new NotFoundError('No user found with that email')
         }

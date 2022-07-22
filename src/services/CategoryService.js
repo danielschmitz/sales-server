@@ -2,6 +2,7 @@ const db = require("../db")
 const BadInputError = require("../errors/BadInputError")
 const NotFoundError = require("../errors/NotFoundError")
 const Joi = require('joi')
+const table = require("../constants/table")
 
 const categorySchema = Joi.object({
     name: Joi.string()
@@ -20,7 +21,7 @@ class CategoryService {
      * Get all Categories
      */
     async findAll() {
-        return await db('categories').orderBy('id')
+        return await db(table.categories).orderBy('id')
     }
     /**
      * Get a Category by id
@@ -29,7 +30,7 @@ class CategoryService {
 
         if (!parseInt(id)) throw new BadInputError('Invalid id')
 
-        const result = await db('categories').where({ id })
+        const result = await db(table.categories).where({ id })
         if (result.length == 0) throw new NotFoundError('Category not found')
 
         return result
@@ -44,15 +45,15 @@ class CategoryService {
             throw new BadInputError(error.message)
         }
         const { name, description } = category
-        const checkName = await db('categories').where({ name }).first()
+        const checkName = await db(table.categories).where({ name }).first()
         if (checkName !== undefined) throw new Error('There is already a category with that name')
 
-        const result = await db('categories').insert({
+        const result = await db(table.categories).insert({
             name,
             description
         }).returning('id')
         const id = result[0]
-        return await db('categories').where({ id }).first()
+        return await db(table.categories).where({ id }).first()
     }
     /*
     * Update a category
@@ -64,13 +65,13 @@ class CategoryService {
             throw new BadInputError(error.message)
         }
         const { name, description } = category
-        const checkName = await db('categories').where({ name }).whereNot('id', id).first()
+        const checkName = await db(table.categories).where({ name }).whereNot('id', id).first()
 
         if (checkName !== undefined) throw new Error('There is already a category with that name')
 
-        await db('categories').where({ id }).update({ name, description })
+        await db(table.categories).where({ id }).update({ name, description })
 
-        return await db('categories').where({ id }).first()
+        return await db(table.categories).where({ id }).first()
     }
     /**
      * Delete a category
@@ -78,10 +79,10 @@ class CategoryService {
     async delete(id) {
         if (!parseInt(id)) throw new BadInputError('Invalid id')
 
-        const result = await db('categories').where({ id })
+        const result = await db(table.categories).where({ id })
         if (result.length == 0) throw new NotFoundError('Category not found')
 
-        await db('categories').where({ id }).delete()
+        await db(table.categories).where({ id }).delete()
 
         return id + ' deleted'
     }
