@@ -75,7 +75,7 @@ router.post('/auth/login', async (req, res) => {
     /* #swagger.responses[200] = { 
     schema: { "token": "token-hash" },
     description: "User logged successfully." } */
-    res.json({ token: `Bearer ${token}` })
+    res.json({ token })
 
 })
 

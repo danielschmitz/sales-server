@@ -1,15 +1,25 @@
 require('dotenv').config()
-var { expressjwt: jwt } = require("express-jwt")
+const jwt = require("jsonwebtoken")
+const UnauthorizedError = require('./errors/UnauthorizedError')
 
 const auth = {
-    checkLogin: () => jwt({
+    checkLogin: async (req, res, next) => {
+        const token = req.headers["authorization"]
+        if (!token) {
+            throw new UnauthorizedError("Token not present")
+        }
         // eslint-disable-next-line no-undef
-        secret: process.env.JWT_SECRET,
-        credentialsRequired: true,
-        algorithms: ['HS256'],
-        // by default, use Authorization header 
-    }),
-    getData: (req) => ({
+        jwt.verify(token, process.env.JWT_SECRET, function (err, auth) {
+            if (err) {
+                throw new UnauthorizedError("Unauthorized")
+            } else {
+                req.auth = auth
+                next()
+            }
+        })
+
+    },
+    getTokenData: (req) => ({
         id: req.auth.id,
         email: req.auth.email
     })

@@ -111,7 +111,7 @@ router.put('/user/:id', auth.checkLogin, async (req, res) => {
     // #swagger.responses[422] = { description: 'Invalid input' }
     if (!parseInt(id)) throw new BadInputError('Invalid id')
 
-    const userLogged = auth.getData(req)
+    const userLogged = auth.getTokenData(req)
 
     // #swagger.responses[422] = { description: 'Invalid input' }
     if (userLogged.id != id) throw new BadInputError('Invalid id!')
@@ -165,7 +165,7 @@ router.put('/user/changePassword/:id', auth.checkLogin, async (req, res) => {
     // #swagger.responses[422] = { description: 'Invalid input' }
     if (!parseInt(id)) throw new BadInputError('Invalid id')
 
-    const userLogged = auth.getData(req)
+    const userLogged = auth.getTokenData(req)
 
     // #swagger.responses[422] = { description: 'Invalid input' }
     if (userLogged.id != id) throw new BadInputError('Invalid id!')

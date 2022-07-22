@@ -11,7 +11,7 @@ router.get('/hello-world', (req, res) => {
 router.get('/hello-world-auth', auth.checkLogin, (req, res) => {
     // #swagger.tags = ['Main']
     // #swagger.summary = 'A simple Hello World with auth'
-    const { email } = auth.getData(req)
+    const { email } = auth.getTokenData(req)
     res.send("hello world " + email)
 })
 
