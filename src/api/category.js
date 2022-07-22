@@ -3,6 +3,7 @@ const db = require('../db')
 const BadInputError = require('../errors/BadInputError')
 const NotFoundError = require('../errors/NotFoundError')
 const Joi = require('joi')
+const auth = require('../auth')
 
 
 const categorySchema = Joi.object({
@@ -42,9 +43,9 @@ router.get('/category/:id', async (req, res) => {
     res.json(result)
 })
 
-router.post('/category', async (req, res) => {
+router.post('/category', auth.checkLogin, async (req, res) => {
     // #swagger.tags = ['Categories']
-    // #swagger.summary = 'Create a new Category'
+    // #swagger.summary = '🔒️ Create a new Category'
     /*	#swagger.parameters['category'] = {
             in: 'body',
             description: 'Category Data',
@@ -80,9 +81,9 @@ router.post('/category', async (req, res) => {
     res.json(await db('categories').where({ id }).first())
 })
 
-router.put('/category/:id', async (req, res) => {
+router.put('/category/:id', auth.checkLogin, async (req, res) => {
     // #swagger.tags = ['Categories']
-    // #swagger.summary = 'Edit a Category'
+    // #swagger.summary = '🔒️ Edit a Category'
     /*	#swagger.parameters['category'] = {
             in: 'body',
             description: 'Category Data',
@@ -113,9 +114,9 @@ router.put('/category/:id', async (req, res) => {
     res.json(await db('categories').where({ id }).first())
 })
 
-router.delete('/category/:id', async (req, res) => {
+router.delete('/category/:id', auth.checkLogin, async (req, res) => {
     // #swagger.tags = ['Categories']
-    // #swagger.summary = 'Delete a Category'
+    // #swagger.summary = '🔒️ Delete a Category'
     const { id } = req.params
 
     // #swagger.responses[422] = { description: 'Invalid input' }

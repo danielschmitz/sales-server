@@ -99,7 +99,7 @@ router.post('/user', async (req, res) => {
 
 router.put('/user/:id', auth.checkLogin, async (req, res) => {
     // #swagger.tags = ['Users']
-    // #swagger.summary = 'Edit a User'
+    // #swagger.summary = '🔒️ Edit a User'
     /*	#swagger.parameters['user'] = {
             in: 'body',
             description: 'User Data',
@@ -151,7 +151,7 @@ router.put('/user/:id', auth.checkLogin, async (req, res) => {
 
 router.put('/user/changePassword/:id', auth.checkLogin, async (req, res) => {
     // #swagger.tags = ['Users']
-    // #swagger.summary = 'Change a password'
+    // #swagger.summary = '🔒️ Change a password'
     /*	#swagger.parameters['user'] = {
             in: 'body',
             description: 'User Data',
@@ -169,7 +169,6 @@ router.put('/user/changePassword/:id', auth.checkLogin, async (req, res) => {
 
     // #swagger.responses[422] = { description: 'Invalid input' }
     if (userLogged.id != id) throw new BadInputError('Invalid id!')
-
 
     const { password } = req.body
 
@@ -193,9 +192,9 @@ router.put('/user/changePassword/:id', auth.checkLogin, async (req, res) => {
     )
 })
 
-router.delete('/user/:id', async (req, res) => {
+router.delete('/user/:id', auth.checkLogin, async (req, res) => {
     // #swagger.tags = ['Users']
-    // #swagger.summary = 'Delete a User'
+    // #swagger.summary = '🔒️ Delete a User'
     const { id } = req.params
 
     // #swagger.responses[422] = { description: 'Invalid input' }

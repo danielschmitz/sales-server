@@ -82,13 +82,18 @@
         "tags": [
           "Categories"
         ],
-        "summary": "Edit a Category",
+        "summary": "🔒️ Edit a Category",
         "description": "",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
             "type": "string"
           },
           {
@@ -120,13 +125,18 @@
         "tags": [
           "Categories"
         ],
-        "summary": "Delete a Category",
+        "summary": "🔒️ Delete a Category",
         "description": "",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
             "type": "string"
           }
         ],
@@ -148,9 +158,14 @@
         "tags": [
           "Categories"
         ],
-        "summary": "Create a new Category",
+        "summary": "🔒️ Create a new Category",
         "description": "",
         "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
           {
             "name": "category",
             "in": "body",
@@ -235,13 +250,18 @@
         "tags": [
           "Users"
         ],
-        "summary": "Edit a User",
+        "summary": "🔒️ Edit a User",
         "description": "",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
             "type": "string"
           },
           {
@@ -273,13 +293,18 @@
         "tags": [
           "Users"
         ],
-        "summary": "Delete a User",
+        "summary": "🔒️ Delete a User",
         "description": "",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
             "type": "string"
           }
         ],
@@ -335,13 +360,18 @@
         "tags": [
           "Users"
         ],
-        "summary": "Change a password",
+        "summary": "🔒️ Change a password",
         "description": "",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
             "type": "string"
           },
           {
@@ -431,13 +461,18 @@
         "tags": [
           "Suppliers"
         ],
-        "summary": "Edit a Supplier",
+        "summary": "🔒️ Edit a Supplier",
         "description": "",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
             "type": "string"
           },
           {
@@ -469,13 +504,18 @@
         "tags": [
           "Suppliers"
         ],
-        "summary": "Delete a Supplier",
+        "summary": "🔒️ Delete a Supplier",
         "description": "",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
             "type": "string"
           }
         ],
@@ -497,9 +537,14 @@
         "tags": [
           "Suppliers"
         ],
-        "summary": "Create a new Supplier",
+        "summary": "🔒️ Create a new Supplier",
         "description": "",
         "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
           {
             "name": "supplier",
             "in": "body",
@@ -533,7 +578,13 @@
         ],
         "summary": "Get info about token",
         "description": "",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -617,9 +668,15 @@
         "tags": [
           "Main"
         ],
-        "summary": "A simple Hello World with auth",
+        "summary": "🔒️ A simple Hello World with auth",
         "description": "",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"

@@ -63,9 +63,9 @@ router.get('/supplier/:id', async (req, res) => {
     res.json(result)
 })
 
-router.post('/supplier', async (req, res) => {
+router.post('/supplier', auth.checkLogin, async (req, res) => {
     // #swagger.tags = ['Suppliers']
-    // #swagger.summary = 'Create a new Supplier'
+    // #swagger.summary = '🔒️ Create a new Supplier'
     /*	#swagger.parameters['supplier'] = {
             in: 'body',
             description: 'Supplier Data',
@@ -103,7 +103,7 @@ router.post('/supplier', async (req, res) => {
 
 router.put('/supplier/:id', auth.checkLogin, async (req, res) => {
     // #swagger.tags = ['Suppliers']
-    // #swagger.summary = 'Edit a Supplier'
+    // #swagger.summary = '🔒️ Edit a Supplier'
     /*	#swagger.parameters['supplier'] = {
             in: 'body',
             description: 'Supplier Data',
@@ -134,9 +134,9 @@ router.put('/supplier/:id', auth.checkLogin, async (req, res) => {
     res.json(await db('suppliers').where({ id }).first())
 })
 
-router.delete('/supplier/:id', async (req, res) => {
+router.delete('/supplier/:id', auth.checkLogin, async (req, res) => {
     // #swagger.tags = ['Suppliers']
-    // #swagger.summary = 'Delete a Supplier'
+    // #swagger.summary = '🔒️ Delete a Supplier'
     const { id } = req.params
 
     // #swagger.responses[422] = { description: 'Invalid input' }
