@@ -12,15 +12,15 @@ const categorySchema = Joi.object({
         .max(30)
 })
 
+
 class CategoryService {
     constructor() {
-        this.db = db('categories')
     }
     /**
      * Get all Categories
      */
     async findAll() {
-        return await this.db.orderBy('id')
+        return await db('categories').orderBy('id')
     }
     /**
      * Get a Category by id
@@ -29,7 +29,7 @@ class CategoryService {
 
         if (!parseInt(id)) throw new BadInputError('Invalid id')
 
-        const result = await this.db.where({ id })
+        const result = await db('categories').where({ id })
         if (result.length == 0) throw new NotFoundError('Category not found')
 
         return result
@@ -44,15 +44,15 @@ class CategoryService {
             throw new BadInputError(error.message)
         }
         const { name, description } = category
-        const checkName = await this.db.where({ name }).first()
+        const checkName = await db('categories').where({ name }).first()
         if (checkName !== undefined) throw new Error('There is already a category with that name')
 
-        const result = await this.db.insert({
+        const result = await db('categories').insert({
             name,
             description
         }).returning('id')
         const id = result[0]
-        return await this.db.where({ id }).first()
+        return await db('categories').where({ id }).first()
     }
     /*
     * Update a category
@@ -64,13 +64,13 @@ class CategoryService {
             throw new BadInputError(error.message)
         }
         const { name, description } = category
-        const checkName = await this.db.where({ name }).whereNot('id', id).first()
+        const checkName = await db('categories').where({ name }).whereNot('id', id).first()
 
         if (checkName !== undefined) throw new Error('There is already a category with that name')
 
-        await this.db.where({ id }).update({ name, description })
+        await db('categories').where({ id }).update({ name, description })
 
-        return await this.db.where({ id }).first()
+        return await db('categories').where({ id }).first()
     }
     /**
      * Delete a category
@@ -78,12 +78,12 @@ class CategoryService {
     async delete(id) {
         if (!parseInt(id)) throw new BadInputError('Invalid id')
 
-        const result = await this.db.where({ id })
+        const result = await db('categories').where({ id })
         if (result.length == 0) throw new NotFoundError('Category not found')
 
         await db('categories').where({ id }).delete()
 
-        return true
+        return id + ' deleted'
     }
 }
 

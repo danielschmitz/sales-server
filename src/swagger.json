@@ -111,19 +111,7 @@
         ],
         "responses": {
           "200": {
-            "description": "User logged successfully.",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "token": {
-                  "type": "string",
-                  "example": "token-hash"
-                }
-              },
-              "xml": {
-                "name": "main"
-              }
-            }
+            "description": "Token"
           },
           "401": {
             "description": "Incorrect password"

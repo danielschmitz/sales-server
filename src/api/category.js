@@ -46,7 +46,7 @@ router.post('/category', auth.checkLogin, async (req, res) => {
         schema: { "$ref": "#/definitions/CategoryResult" },
         description: "Category registered successfully." } 
     */
-    res.json(categoryService.create(req.body))
+    res.json(await categoryService.create(req.body))
 })
 
 router.put('/category/:id', auth.checkLogin, async (req, res) => {
@@ -76,7 +76,7 @@ router.delete('/category/:id', auth.checkLogin, async (req, res) => {
     #swagger.responses[404] = { description: 'Category not found' }
     #swagger.responses[200] = {description: "Category deleted" } 
     */
-    res.send(categoryService.delete(req.params.id))
+    res.send(await categoryService.delete(req.params.id))
 })
 
 
