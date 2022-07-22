@@ -4,8 +4,7 @@ const BadInputError = require('../errors/BadInputError')
 const NotFoundError = require('../errors/NotFoundError')
 const Joi = require('joi')
 const bcrypt = require('bcrypt')
-const Auth = require('../auth')
-
+const auth = require('../auth')
 
 
 const userSchema = Joi.object({
@@ -98,7 +97,7 @@ router.post('/user', async (req, res) => {
     )
 })
 
-router.put('/user/:id', Auth.checkLogin, async (req, res) => {
+router.put('/user/:id', auth.checkLogin, async (req, res) => {
     // #swagger.tags = ['Users']
     // #swagger.summary = 'Edit a User'
     /*	#swagger.parameters['user'] = {
@@ -112,7 +111,7 @@ router.put('/user/:id', Auth.checkLogin, async (req, res) => {
     // #swagger.responses[422] = { description: 'Invalid input' }
     if (!parseInt(id)) throw new BadInputError('Invalid id')
 
-    const userLogged = Auth.getData(req)
+    const userLogged = auth.getData(req)
 
     // #swagger.responses[422] = { description: 'Invalid input' }
     if (userLogged.id != id) throw new BadInputError('Invalid id!')
@@ -150,7 +149,7 @@ router.put('/user/:id', Auth.checkLogin, async (req, res) => {
     )
 })
 
-router.put('/user/changePassword/:id', Auth.checkLogin, async (req, res) => {
+router.put('/user/changePassword/:id', auth.checkLogin, async (req, res) => {
     // #swagger.tags = ['Users']
     // #swagger.summary = 'Change a password'
     /*	#swagger.parameters['user'] = {
@@ -166,7 +165,7 @@ router.put('/user/changePassword/:id', Auth.checkLogin, async (req, res) => {
     // #swagger.responses[422] = { description: 'Invalid input' }
     if (!parseInt(id)) throw new BadInputError('Invalid id')
 
-    const userLogged = Auth.getData(req)
+    const userLogged = auth.getData(req)
 
     // #swagger.responses[422] = { description: 'Invalid input' }
     if (userLogged.id != id) throw new BadInputError('Invalid id!')
