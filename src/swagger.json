@@ -24,170 +24,115 @@
     }
   },
   "paths": {
-    "/categories": {
+    "/hello-world": {
       "get": {
         "tags": [
-          "Categories"
+          "Hello World"
         ],
-        "summary": "Get All Categories",
+        "summary": "A simple Hello World",
         "description": "",
         "parameters": [],
         "responses": {
           "200": {
-            "description": "A list of categories",
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/hello-world-auth": {
+      "get": {
+        "tags": [
+          "Hello World"
+        ],
+        "summary": "🔒️ A simple Hello World with auth",
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/auth/info": {
+      "get": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Get info about token",
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Try to login",
+        "description": "",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "User Login Data",
+            "required": true,
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/CategoryResult"
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string",
+                  "example": "user1@email.com"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "123@456"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User logged successfully.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "token": {
+                  "type": "string",
+                  "example": "token-hash"
+                }
               },
               "xml": {
                 "name": "main"
               }
             }
-          }
-        }
-      }
-    },
-    "/category/{id}": {
-      "get": {
-        "tags": [
-          "Categories"
-        ],
-        "summary": "Get a Category",
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Category",
-            "schema": {
-              "$ref": "#/definitions/CategoryResult"
-            }
+          },
+          "401": {
+            "description": "Incorrect password"
           },
           "404": {
-            "description": "Category not found"
+            "description": "No user found with that email"
           },
           "422": {
             "description": "Invalid input"
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Categories"
-        ],
-        "summary": "🔒️ Edit a Category",
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          },
-          {
-            "name": "category",
-            "in": "body",
-            "description": "Category Data",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/Category"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Category registered successfully.",
-            "schema": {
-              "$ref": "#/definitions/CategoryResult"
-            }
-          },
-          "422": {
-            "description": "Invalid input"
-          },
-          "500": {
-            "description": "There is already a category with that name"
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Categories"
-        ],
-        "summary": "🔒️ Delete a Category",
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Category deleted"
-          },
-          "404": {
-            "description": "Category not found"
-          },
-          "422": {
-            "description": "Invalid input"
-          }
-        }
-      }
-    },
-    "/category": {
-      "post": {
-        "tags": [
-          "Categories"
-        ],
-        "summary": "🔒️ Create a new Category",
-        "description": "",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          },
-          {
-            "name": "category",
-            "in": "body",
-            "description": "Category Data",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/Category"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Category registered successfully.",
-            "schema": {
-              "$ref": "#/definitions/CategoryResult"
-            }
-          },
-          "422": {
-            "description": "Invalid input"
-          },
-          "500": {
-            "description": "There is already a category with that name"
           }
         }
       }
@@ -403,6 +348,174 @@
         }
       }
     },
+    "/categories": {
+      "get": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "Get All Categories",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "A list of categories",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CategoryResult"
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/category/{id}": {
+      "get": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "Get a Category",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Category",
+            "schema": {
+              "$ref": "#/definitions/CategoryResult"
+            }
+          },
+          "404": {
+            "description": "Category not found"
+          },
+          "422": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "🔒️ Edit a Category",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "category",
+            "in": "body",
+            "description": "Category Data",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Category"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Category registered successfully.",
+            "schema": {
+              "$ref": "#/definitions/CategoryResult"
+            }
+          },
+          "422": {
+            "description": "Invalid input"
+          },
+          "500": {
+            "description": "There is already a category with that name"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "🔒️ Delete a Category",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Category deleted"
+          },
+          "404": {
+            "description": "Category not found"
+          },
+          "422": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/category": {
+      "post": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "🔒️ Create a new Category",
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "category",
+            "in": "body",
+            "description": "Category Data",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Category"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Category registered successfully.",
+            "schema": {
+              "$ref": "#/definitions/CategoryResult"
+            }
+          },
+          "422": {
+            "description": "Invalid input"
+          },
+          "500": {
+            "description": "There is already a category with that name"
+          }
+        }
+      }
+    },
     "/suppliers": {
       "get": {
         "tags": [
@@ -567,119 +680,6 @@
           },
           "500": {
             "description": "There is already a supplier with that name"
-          }
-        }
-      }
-    },
-    "/auth/info": {
-      "get": {
-        "tags": [
-          "Auth"
-        ],
-        "summary": "Get info about token",
-        "description": "",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/auth/login": {
-      "post": {
-        "tags": [
-          "Auth"
-        ],
-        "summary": "Try to login",
-        "description": "",
-        "parameters": [
-          {
-            "name": "user",
-            "in": "body",
-            "description": "User Login Data",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "email": {
-                  "type": "string",
-                  "example": "user1@email.com"
-                },
-                "password": {
-                  "type": "string",
-                  "example": "123@456"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "User logged successfully.",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "token": {
-                  "type": "string",
-                  "example": "token-hash"
-                }
-              },
-              "xml": {
-                "name": "main"
-              }
-            }
-          },
-          "401": {
-            "description": "Incorrect password"
-          },
-          "404": {
-            "description": "No user found with that email"
-          },
-          "422": {
-            "description": "Invalid input"
-          }
-        }
-      }
-    },
-    "/hello-world": {
-      "get": {
-        "tags": [
-          "Main"
-        ],
-        "summary": "A simple Hello World",
-        "description": "",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/hello-world-auth": {
-      "get": {
-        "tags": [
-          "Main"
-        ],
-        "summary": "🔒️ A simple Hello World with auth",
-        "description": "",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
           }
         }
       }
