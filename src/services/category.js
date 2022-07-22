@@ -5,8 +5,6 @@ const Joi = require('joi')
 const table = require("../constants/table")
 
 class category {
-    constructor() {
-    }
     async validate(data) {
         const categorySchema = Joi.object({
             name: Joi.string()
