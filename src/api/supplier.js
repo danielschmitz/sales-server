@@ -3,8 +3,9 @@ const db = require('../db')
 const BadInputError = require('../errors/BadInputError')
 const NotFoundError = require('../errors/NotFoundError')
 const Joi = require('joi')
-const auth = require('../auth')
 
+const AuthService = require('../services/AuthService')
+const auth = new AuthService()
 
 const supplierSchema = Joi.object({
     companyName: Joi.string()

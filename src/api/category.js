@@ -1,9 +1,11 @@
 const router = require('express').Router()
-const auth = require('../auth')
+
+const AuthService = require('../services/AuthService')
+const auth = new AuthService()
 
 const CategoryService = require('../services/CategoryService')
-
 const categoryService = new CategoryService()
+
 
 router.get('/categories', async (req, res) => {
     /* 
