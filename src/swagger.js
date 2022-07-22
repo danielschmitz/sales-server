@@ -76,12 +76,11 @@ const doc = {
 
 const outputFile = './src/swagger.json'
 const endpointsFiles = [
-    './src/api/category.js',
+    './src/api/hello-world.js',
+    './src/api/auth.js',
     './src/api/user.js',
     './src/api/category.js',
     './src/api/supplier.js',
-    './src/api/auth.js',
-    './src/api/hello-world.js',
 
 ]
 

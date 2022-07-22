@@ -4,8 +4,8 @@ const BadInputError = require('../errors/BadInputError')
 const NotFoundError = require('../errors/NotFoundError')
 const Joi = require('joi')
 const bcrypt = require('bcrypt')
-const auth = require('../auth')
 
+const auth = require('../services/auth')
 
 const userSchema = Joi.object({
     name: Joi.string()
