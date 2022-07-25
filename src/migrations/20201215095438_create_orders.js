@@ -16,7 +16,7 @@ exports.up = function (knex, _Promise) {
         table.foreign('shipper_id').references('shippers.id')
 
         table.integer('to').unsigned()
-        table.foreign('to').references('address.id')
+        table.foreign('to').references('addresses.id')
 
     })
 }
