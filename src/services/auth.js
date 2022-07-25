@@ -21,6 +21,11 @@ const userSchema = Joi.object({
 })
 
 class auth {
+    /**
+     * Try to login
+     * @param {*} user 
+     * @returns token
+     */
     tryLogin = async (user) => {
         const { email, password } = user
         await this.validateInputData(email, password)
@@ -28,7 +33,12 @@ class auth {
         const token = this.generateToken(user)
         return token
     }
-
+    /**
+     * Verify if token its corrects
+     * @param {*} req 
+     * @param {*} res 
+     * @param {*} next 
+     */
     checkLogin = async (req, res, next) => {
         const token = req.headers["authorization"]
         if (!token) {
@@ -45,12 +55,21 @@ class auth {
         })
 
     }
-
+    /**
+     * Get id and email of the logged user
+     * @param {*} req 
+     * @returns 
+     */
     getTokenData = (req) => ({
         id: req.auth.id,
         email: req.auth.email
     })
 
+    /**
+     * Generates a token from user data and JWT_SECRET
+     * @param {*} user 
+     * @returns 
+     */
     generateToken(user) {
         return jsonwebtoken.sign(
             {
@@ -62,7 +81,11 @@ class auth {
             { expiresIn: '1d' }
         )
     }
-
+    /**
+     * Check ifs email/password exists
+     * @param {*} email 
+     * @param {*} password 
+     */
     async validateUser(email, password) {
         const userDb = await db(table.users).where({ email }).first()
         if (!userDb) {
@@ -74,6 +97,11 @@ class auth {
         }
     }
 
+    /**
+     * Validate user input data
+     * @param {*} email 
+     * @param {*} password 
+     */
     async validateInputData(email, password) {
         try {
             await userSchema.validateAsync({ email, password })
