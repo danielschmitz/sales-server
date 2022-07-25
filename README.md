@@ -18,6 +18,3 @@ npm run dev
 * Change the JWT_SECRET in your .env file
 
 go to `localhost:3000/api-docs` 
-
-
-test2
