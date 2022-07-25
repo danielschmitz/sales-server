@@ -12,6 +12,7 @@ const doc = {
         }
     },
     host: null,
+    schemes: ['http', 'https'],
     basePath: '/api',
     securityDefinitions: {
         bearerAuth: {

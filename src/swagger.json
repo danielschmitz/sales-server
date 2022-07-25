@@ -12,7 +12,8 @@
   },
   "basePath": "/api",
   "schemes": [
-    "http"
+    "http",
+    "https"
   ],
   "securityDefinitions": {
     "bearerAuth": {
