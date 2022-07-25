@@ -3,6 +3,7 @@ const BadInputError = require("../errors/BadInputError")
 const NotFoundError = require("../errors/NotFoundError")
 const Joi = require('joi')
 const table = require("../constants/table")
+const { join } = require("path")
 
 
 
@@ -22,7 +23,8 @@ class supplier {
                 .min(2)
                 .max(100)
                 .email()
-                .required()
+                .required(),
+            address_id: Joi.number()
         })
         try {
             await supplierSchema.validateAsync(data)
@@ -34,7 +36,7 @@ class supplier {
      * Get all Suppliers
      */
     async findAll() {
-        return await db(table.supplier)
+        return await db(table.suppliers)
             .orderBy('suppliers.id')
             .join('addresses', 'suppliers.address_id', 'addresses.id')
             .select(
@@ -52,9 +54,15 @@ class supplier {
      */
     async findById(id) {
         if (!parseInt(id)) throw new BadInputError('Invalid id')
-        const result = await db(table.categories).where({ id })
+        const result = await db(table.suppliers).where({ id })
         if (result.length == 0) throw new NotFoundError('Supplier not found')
-        return result
+        // get address without join
+        const { address_id } = result[0]
+        if (address_id) {
+            const resultAddress = await db(table.addresses).where({ id: address_id })
+            result[0].address = resultAddress
+        }
+        return result[0]
     }
     /**
      * Create a new Supplier
@@ -64,15 +72,15 @@ class supplier {
         await this.validate(supplier)
 
         const { name, description } = supplier
-        const checkName = await db(table.categories).where({ name }).first()
+        const checkName = await db(table.suppliers).where({ name }).first()
         if (checkName !== undefined) throw new Error('There is already a supplier with that name')
 
-        const result = await db(table.categories).insert({
+        const result = await db(table.suppliers).insert({
             name,
             description
         }).returning('id')
         const id = result[0]
-        return await db(table.categories).where({ id }).first()
+        return await db(table.suppliers).where({ id }).first()
     }
     /*
     * Update a supplier
@@ -82,13 +90,13 @@ class supplier {
         await this.validate(supplier)
 
         const { name, description } = supplier
-        const checkName = await db(table.categories).where({ name }).whereNot('id', id).first()
+        const checkName = await db(table.suppliers).where({ name }).whereNot('id', id).first()
 
         if (checkName !== undefined) throw new Error('There is already a supplier with that name')
 
-        await db(table.categories).where({ id }).update({ name, description })
+        await db(table.suppliers).where({ id }).update({ name, description })
 
-        return await db(table.categories).where({ id }).first()
+        return await db(table.suppliers).where({ id }).first()
     }
     /**
      * Delete a supplier
@@ -97,7 +105,7 @@ class supplier {
 
         await this.findById(id) // check if supplier exists
 
-        await db(table.categories).where({ id }).delete()
+        await db(table.suppliers).where({ id }).delete()
 
         return id + ' deleted'
     }
