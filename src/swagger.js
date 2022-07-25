@@ -46,7 +46,7 @@ const doc = {
             id: 1,
             companyName: "Supplier Company Name",
             contactName: "Supplier Contact Name",
-            contactEmail: "Supplier Contact Email",
+            contactEmail: "supplier@email.com",
             address_id: 10,
             address: {
                 id: 10,
@@ -62,7 +62,7 @@ const doc = {
             id: 1,
             companyName: "Company Test",
             contactName: "Contact Test",
-            contactEmail: "Email Test",
+            contactEmail: "supplier@email.com",
             address_id: 6,
             street: "Street Test",
             city: "City Test",
@@ -74,7 +74,7 @@ const doc = {
         Supplier: {
             companyName: "Supplier Company Name",
             contactName: "Supplier Contact Name",
-            contactEmail: "Supplier Contact Email",
+            contactEmail: "supplier@email.com",
             address: {
                 street: "Street Address",
                 city: "City",

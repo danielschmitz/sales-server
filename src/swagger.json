@@ -755,7 +755,7 @@
         },
         "contactEmail": {
           "type": "string",
-          "example": "Supplier Contact Email"
+          "example": "supplier@email.com"
         },
         "address_id": {
           "type": "number",
@@ -813,7 +813,7 @@
         },
         "contactEmail": {
           "type": "string",
-          "example": "Email Test"
+          "example": "supplier@email.com"
         },
         "address_id": {
           "type": "number",
@@ -858,7 +858,7 @@
         },
         "contactEmail": {
           "type": "string",
-          "example": "Supplier Contact Email"
+          "example": "supplier@email.com"
         },
         "address": {
           "type": "object",
