@@ -10,7 +10,6 @@
       "url": "https://github.com/danielschmitz"
     }
   },
-  "host": "localhost:3000",
   "basePath": "/api",
   "schemes": [
     "http"

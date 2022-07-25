@@ -11,7 +11,7 @@ const doc = {
             url: 'https://github.com/danielschmitz'
         }
     },
-    host: 'localhost:3000',
+    host: null,
     basePath: '/api',
     securityDefinitions: {
         bearerAuth: {
