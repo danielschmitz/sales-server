@@ -23,28 +23,9 @@ const userSchema = Joi.object({
 class auth {
     tryLogin = async (user) => {
         const { email, password } = user
-        try {
-            await userSchema.validateAsync({ email, password })
-        } catch (error) {
-            throw new BadInputError(error.message)
-        }
-        const userDb = await db(table.users).where({ email }).first()
-        if (!userDb) {
-            throw new NotFoundError('No user found with that email')
-        }
-        const valid = await bcrypt.compare(password, userDb.password)
-        if (!valid) {
-            throw new UnauthorizedError('Incorrect password')
-        }
-        const token = jsonwebtoken.sign(
-            {
-                id: user.id,
-                email: user.email
-            },
-            // eslint-disable-next-line no-undef
-            process.env.JWT_SECRET,
-            { expiresIn: '1d' }
-        )
+        await this.validateInputData(email, password)
+        await this.validateUser(email, password)
+        const token = this.generateToken(user)
         return token
     }
 
@@ -69,6 +50,37 @@ class auth {
         id: req.auth.id,
         email: req.auth.email
     })
+
+    generateToken(user) {
+        return jsonwebtoken.sign(
+            {
+                id: user.id,
+                email: user.email
+            },
+            // eslint-disable-next-line no-undef
+            process.env.JWT_SECRET,
+            { expiresIn: '1d' }
+        )
+    }
+
+    async validateUser(email, password) {
+        const userDb = await db(table.users).where({ email }).first()
+        if (!userDb) {
+            throw new NotFoundError('No user found with that email')
+        }
+        const valid = await bcrypt.compare(password, userDb.password)
+        if (!valid) {
+            throw new UnauthorizedError('Incorrect password')
+        }
+    }
+
+    async validateInputData(email, password) {
+        try {
+            await userSchema.validateAsync({ email, password })
+        } catch (error) {
+            throw new BadInputError(error.message)
+        }
+    }
 }
 
 module.exports = new auth
