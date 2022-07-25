@@ -80,8 +80,8 @@ class supplier {
             postalCode, country, phone
         } = supplier.address
 
-        const checkName = await db(table.suppliers).where({ contactEmail }).first()
-        if (checkName !== undefined) throw new Error('There is already a supplier with that email')
+        const checkEmail = await db(table.suppliers).where({ contactEmail }).first()
+        if (checkEmail !== undefined) throw new Error('There is already a supplier with that email')
 
         const address_result = await address.create({
             street, city, region,
@@ -104,15 +104,27 @@ class supplier {
     async update(id, supplier) {
 
         await this.validate(supplier)
+        await address.validate(supplier.address)
 
-        const { name, description } = supplier
-        const checkName = await db(table.suppliers).where({ name }).whereNot('id', id).first()
+        const { companyName,
+            contactName,
+            contactEmail
+        } = supplier
 
-        if (checkName !== undefined) throw new Error('There is already a supplier with that name')
+        const checkEmail = await db(table.suppliers).where({ contactEmail }).whereNot('id', id).first()
+        if (checkEmail !== undefined) throw new Error('There is already a supplier with that email')
 
-        await db(table.suppliers).where({ id }).update({ name, description })
+        const { address_id } = await this.findById(id)
 
-        return await db(table.suppliers).where({ id }).first()
+        await address.update(address_id, supplier.address)
+
+        await db(table.suppliers).where({ id }).update({
+            companyName,
+            contactName,
+            contactEmail
+        })
+
+        return await this.findById(id)
     }
     /**
      * Delete a supplier
