@@ -1,4 +1,6 @@
 module.exports = {
     users: 'users',
-    categories: 'categories'
+    categories: 'categories',
+    suppliers: 'suppliers',
+    addresses: 'addresses'
 }

@@ -33,7 +33,7 @@ class category {
         if (!parseInt(id)) throw new BadInputError('Invalid id')
         const result = await db(table.categories).where({ id })
         if (result.length == 0) throw new NotFoundError('Category not found')
-        return result
+        return result[0]
     }
     /**
      * Create a new Category

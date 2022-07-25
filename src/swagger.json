@@ -46,7 +46,13 @@
         ],
         "summary": "🔒️ A simple Hello World with auth",
         "description": "",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -61,7 +67,13 @@
         ],
         "summary": "Get info about token",
         "description": "",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -181,6 +193,11 @@
             "type": "string"
           },
           {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
             "name": "user",
             "in": "body",
             "description": "User Data",
@@ -216,6 +233,11 @@
             "name": "id",
             "in": "path",
             "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
             "type": "string"
           }
         ],
@@ -278,6 +300,11 @@
             "name": "id",
             "in": "path",
             "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
             "type": "string"
           },
           {
@@ -377,6 +404,11 @@
             "type": "string"
           },
           {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
             "name": "category",
             "in": "body",
             "description": "Category Data",
@@ -413,6 +445,11 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
           }
         ],
         "responses": {
@@ -436,6 +473,11 @@
         "summary": "🔒️ Create a new Category",
         "description": "",
         "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
           {
             "name": "category",
             "in": "body",
@@ -476,7 +518,7 @@
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/SupplierResult"
+                "$ref": "#/definitions/SupplierSimpleResult"
               },
               "xml": {
                 "name": "main"
@@ -530,6 +572,11 @@
             "type": "string"
           },
           {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
             "name": "supplier",
             "in": "body",
             "description": "Supplier Data",
@@ -566,6 +613,11 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
           }
         ],
         "responses": {
@@ -589,6 +641,11 @@
         "summary": "🔒️ Create a new Supplier",
         "description": "",
         "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
           {
             "name": "supplier",
             "in": "body",
@@ -698,7 +755,7 @@
         },
         "contactEmail": {
           "type": "string",
-          "example": "Supplier Contact Email"
+          "example": "supplier@email.com"
         },
         "address_id": {
           "type": "number",
@@ -739,6 +796,55 @@
         }
       }
     },
+    "SupplierSimpleResult": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number",
+          "example": 1
+        },
+        "companyName": {
+          "type": "string",
+          "example": "Company Test"
+        },
+        "contactName": {
+          "type": "string",
+          "example": "Contact Test"
+        },
+        "contactEmail": {
+          "type": "string",
+          "example": "supplier@email.com"
+        },
+        "address_id": {
+          "type": "number",
+          "example": 6
+        },
+        "street": {
+          "type": "string",
+          "example": "Street Test"
+        },
+        "city": {
+          "type": "string",
+          "example": "City Test"
+        },
+        "region": {
+          "type": "string",
+          "example": "Region Test"
+        },
+        "postalCode": {
+          "type": "string",
+          "example": "Postal Test"
+        },
+        "country": {
+          "type": "string",
+          "example": "Country Test"
+        },
+        "phone": {
+          "type": "string",
+          "example": "111 222 Test"
+        }
+      }
+    },
     "Supplier": {
       "type": "object",
       "properties": {
@@ -752,7 +858,7 @@
         },
         "contactEmail": {
           "type": "string",
-          "example": "Supplier Contact Email"
+          "example": "supplier@email.com"
         },
         "address": {
           "type": "object",
