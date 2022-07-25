@@ -131,11 +131,13 @@ class supplier {
      */
     async delete(id) {
 
-        await this.findById(id) // check if supplier exists
+        const supplier = await this.findById(id) // check if supplier exists
+
+        await db(table.addresses).where({ id: supplier.address_id }).delete()
 
         await db(table.suppliers).where({ id }).delete()
 
-        return id + ' deleted'
+        return `deleted supplier ${id} and address ${supplier.address_id}`
     }
 }
 
