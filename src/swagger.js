@@ -84,6 +84,48 @@ const doc = {
                 country: "Country",
                 phone: "Phone"
             }
+        },
+        ShipperResult: {
+            id: 1,
+            companyName: "Shipper Company Name",
+            contactName: "Shipper Contact Name",
+            contactEmail: "supplier@email.com",
+            address_id: 10,
+            address: {
+                id: 10,
+                street: "Street Address",
+                city: "City",
+                region: "Region",
+                postalCode: "Postal Code",
+                country: "Country",
+                phone: "Phone"
+            }
+        },
+        ShipperSimpleResult: {
+            id: 1,
+            companyName: "Company Test",
+            contactName: "Contact Test",
+            contactEmail: "supplier@email.com",
+            address_id: 6,
+            street: "Street Test",
+            city: "City Test",
+            region: "Region Test",
+            postalCode: "Postal Test",
+            country: "Country Test",
+            phone: "111 222 Test"
+        },
+        Shipper: {
+            companyName: "Shipper Company Name",
+            contactName: "Shipper Contact Name",
+            contactEmail: "supplier@email.com",
+            address: {
+                street: "Street Address",
+                city: "City",
+                region: "Region",
+                postalCode: "Postal Code",
+                country: "Country",
+                phone: "Phone"
+            }
         }
     }
 }
@@ -95,6 +137,7 @@ const endpointsFiles = [
     './src/api/user.js',
     './src/api/category.js',
     './src/api/supplier.js',
+    './src/api/shipper.js',
 
 ]
 

@@ -671,6 +671,174 @@
           }
         }
       }
+    },
+    "/shippers": {
+      "get": {
+        "tags": [
+          "Shippers"
+        ],
+        "summary": "Get All Shippers",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "A list of shippers",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ShipperSimpleResult"
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/shipper/{id}": {
+      "get": {
+        "tags": [
+          "Shippers"
+        ],
+        "summary": "Get a Shipper",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Shipper",
+            "schema": {
+              "$ref": "#/definitions/ShipperResult"
+            }
+          },
+          "404": {
+            "description": "Shipper not found"
+          },
+          "422": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Shippers"
+        ],
+        "summary": "🔒️ Edit a Shipper",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "shipper",
+            "in": "body",
+            "description": "Shipper Data",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Shipper"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Shipper registered successfully.",
+            "schema": {
+              "$ref": "#/definitions/ShipperResult"
+            }
+          },
+          "422": {
+            "description": "Invalid input"
+          },
+          "500": {
+            "description": "There is already a shipper with that name"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Shippers"
+        ],
+        "summary": "🔒️ Delete a Shipper",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Shipper deleted"
+          },
+          "404": {
+            "description": "Shipper not found"
+          },
+          "422": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/shipper": {
+      "post": {
+        "tags": [
+          "Shippers"
+        ],
+        "summary": "🔒️ Create a new Shipper",
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "shipper",
+            "in": "body",
+            "description": "Shipper Data",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Shipper"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Shipper registered successfully.",
+            "schema": {
+              "$ref": "#/definitions/ShipperResult"
+            }
+          },
+          "422": {
+            "description": "Invalid input"
+          },
+          "500": {
+            "description": "There is already a shipper with that name"
+          }
+        }
+      }
     }
   },
   "definitions": {
@@ -855,6 +1023,159 @@
         "contactName": {
           "type": "string",
           "example": "Supplier Contact Name"
+        },
+        "contactEmail": {
+          "type": "string",
+          "example": "supplier@email.com"
+        },
+        "address": {
+          "type": "object",
+          "properties": {
+            "street": {
+              "type": "string",
+              "example": "Street Address"
+            },
+            "city": {
+              "type": "string",
+              "example": "City"
+            },
+            "region": {
+              "type": "string",
+              "example": "Region"
+            },
+            "postalCode": {
+              "type": "string",
+              "example": "Postal Code"
+            },
+            "country": {
+              "type": "string",
+              "example": "Country"
+            },
+            "phone": {
+              "type": "string",
+              "example": "Phone"
+            }
+          }
+        }
+      }
+    },
+    "ShipperResult": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number",
+          "example": 1
+        },
+        "companyName": {
+          "type": "string",
+          "example": "Shipper Company Name"
+        },
+        "contactName": {
+          "type": "string",
+          "example": "Shipper Contact Name"
+        },
+        "contactEmail": {
+          "type": "string",
+          "example": "supplier@email.com"
+        },
+        "address_id": {
+          "type": "number",
+          "example": 10
+        },
+        "address": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "number",
+              "example": 10
+            },
+            "street": {
+              "type": "string",
+              "example": "Street Address"
+            },
+            "city": {
+              "type": "string",
+              "example": "City"
+            },
+            "region": {
+              "type": "string",
+              "example": "Region"
+            },
+            "postalCode": {
+              "type": "string",
+              "example": "Postal Code"
+            },
+            "country": {
+              "type": "string",
+              "example": "Country"
+            },
+            "phone": {
+              "type": "string",
+              "example": "Phone"
+            }
+          }
+        }
+      }
+    },
+    "ShipperSimpleResult": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number",
+          "example": 1
+        },
+        "companyName": {
+          "type": "string",
+          "example": "Company Test"
+        },
+        "contactName": {
+          "type": "string",
+          "example": "Contact Test"
+        },
+        "contactEmail": {
+          "type": "string",
+          "example": "supplier@email.com"
+        },
+        "address_id": {
+          "type": "number",
+          "example": 6
+        },
+        "street": {
+          "type": "string",
+          "example": "Street Test"
+        },
+        "city": {
+          "type": "string",
+          "example": "City Test"
+        },
+        "region": {
+          "type": "string",
+          "example": "Region Test"
+        },
+        "postalCode": {
+          "type": "string",
+          "example": "Postal Test"
+        },
+        "country": {
+          "type": "string",
+          "example": "Country Test"
+        },
+        "phone": {
+          "type": "string",
+          "example": "111 222 Test"
+        }
+      }
+    },
+    "Shipper": {
+      "type": "object",
+      "properties": {
+        "companyName": {
+          "type": "string",
+          "example": "Shipper Company Name"
+        },
+        "contactName": {
+          "type": "string",
+          "example": "Shipper Contact Name"
         },
         "contactEmail": {
           "type": "string",
