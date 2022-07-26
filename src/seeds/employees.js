@@ -16,7 +16,7 @@ exports.seed = async function (knex) {
     'firstName': 'Boss',
     'lastName': 'Doe',
     'title': 'Sr.',
-    'birthDate': Date.UTC(1990, 10, 20),
+    'birthDate': Date.UTC(1990, 10, 8),
     'hireDate': Date.now(),
     'address_id': addressBossId[0]
   })
@@ -36,7 +36,7 @@ exports.seed = async function (knex) {
     'firstName': 'Employee 1',
     'lastName': 'Hug',
     'title': 'Sr.',
-    'birthDate': Date.UTC(1999, 8, 13),
+    'birthDate': Date.UTC(1999, 8, 2),
     'hireDate': Date.now(),
     'address_id': addressEmployeeId[0],
     'reports_to': bossId[0]
@@ -46,7 +46,7 @@ exports.seed = async function (knex) {
     'firstName': 'Employee 2',
     'lastName': 'Nut',
     'title': 'Sr.',
-    'birthDate': Date.UTC(2002, 7, 21),
+    'birthDate': Date.UTC(2002, 7, 3),
     'hireDate': Date.now(),
     'address_id': addressEmployeeId[0],
     'reports_to': bossId[0]
