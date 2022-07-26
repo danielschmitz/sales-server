@@ -1,7 +1,8 @@
 
 exports.seed = async function (knex) {
-  await knex('customers').del()
-  const addressId = await knex('addresses').insert(
+  console.log('seed suppliers')
+  await knex('suppliers').del()
+  const addressesId = await knex('addresses').insert(
     {
       'street': 'Street Test',
       'city': 'City Test',
@@ -12,13 +13,12 @@ exports.seed = async function (knex) {
     }
   )
 
-
-
-  return await knex('customers').insert(
+  return knex('suppliers').insert(
     {
+      'companyName': 'Company Test',
       'contactName': 'Contact Test',
       'contactEmail': 'Email Test',
-      'address_id': addressId[0]
+      'address_id': addressesId[0]
     }
   )
 }

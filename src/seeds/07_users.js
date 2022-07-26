@@ -4,6 +4,7 @@ const password = '123@456'
 const hash = bcrypt.hashSync(password, 10)
 
 exports.seed = function (knex, _Promise) {
+  console.log('seed users')
   // Deletes ALL existing entries
   return knex('users').del()
     .then(function () {

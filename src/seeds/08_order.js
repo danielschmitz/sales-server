@@ -1,5 +1,6 @@
 
 exports.seed = function (knex) {
+  console.log('seed orders')
   // Deletes ALL existing entries
   return knex('orders').del()
     .then(async function () {
@@ -18,7 +19,7 @@ exports.seed = function (knex) {
 
       return knex('orders').insert([
         {
-          "orderDate": Date.now(),
+          "orderDate": new Date().toISOString(),
           "shippedDate": null,
           "freight": 10.2,
           "customer_id": 1,

@@ -1,6 +1,7 @@
 
 
 exports.seed = function (knex, _Promise) {
+  console.log('seed product')
   // Deletes ALL existing entries
   return knex('products').del()
     .then(function () {
@@ -20,7 +21,7 @@ exports.seed = function (knex, _Promise) {
           "quantityPerUnit": "36 boxes",
           "unitsInStock": 23,
           "unitPrice": 12.10,
-          "supplier_id": 2,
+          "supplier_id": 1,
           "category_id": 1,
           "discontinued": false,
         },

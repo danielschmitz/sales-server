@@ -1,5 +1,6 @@
 
 exports.up = function (knex, _Promise) {
+    console.log('migrate users')
     return knex.schema.createTable('users', table => {
         table.increments('id').primary()
         table.string('name', 80).notNullable()

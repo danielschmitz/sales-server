@@ -1,6 +1,6 @@
 
-
 exports.seed = function (knex, _Promise) {
+  console.log('seed categories')
   // Deletes ALL existing entries
   return knex('categories').del()
     .then(function () {

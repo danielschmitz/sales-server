@@ -1,4 +1,5 @@
 exports.up = function (knex, _Promise) {
+    console.log('migrate order_product')
     return knex.schema.createTable('order_product', table => {
         table.integer('product_id')
         table.integer('order_id')

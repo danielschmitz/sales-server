@@ -1,4 +1,5 @@
 exports.up = function (knex, _Promise) {
+    console.log('migrate suppliers')
     return knex.schema.createTable('suppliers', table => {
         table.increments('id').primary()
         table.string('companyName', 100).notNullable()

@@ -1,5 +1,5 @@
-
 exports.seed = async function (knex) {
+  console.log('seed employees')
   await knex('employees').del()
   const addressBossId = await knex('addresses').insert(
     {
@@ -16,8 +16,8 @@ exports.seed = async function (knex) {
     'firstName': 'Boss',
     'lastName': 'Doe',
     'title': 'Sr.',
-    'birthDate': Date.UTC(1990, 10, 8),
-    'hireDate': Date.now(),
+    'birthDate': new Date('October 15, 1976').toISOString(),
+    'hireDate': new Date().toISOString(),
     'address_id': addressBossId[0]
   })
 
@@ -36,8 +36,8 @@ exports.seed = async function (knex) {
     'firstName': 'Employee 1',
     'lastName': 'Hug',
     'title': 'Sr.',
-    'birthDate': Date.UTC(1999, 8, 2),
-    'hireDate': Date.now(),
+    'birthDate': new Date('December 1, 1980').toISOString(),
+    'hireDate': new Date().toISOString(),
     'address_id': addressEmployeeId[0],
     'reports_to': bossId[0]
   })
@@ -46,9 +46,9 @@ exports.seed = async function (knex) {
     'firstName': 'Employee 2',
     'lastName': 'Nut',
     'title': 'Sr.',
-    'birthDate': Date.UTC(2002, 7, 3),
-    'hireDate': Date.now(),
+    'birthDate': new Date('December 1, 1980').toISOString(),
     'address_id': addressEmployeeId[0],
+    'hireDate': new Date().toISOString(),
     'reports_to': bossId[0]
   })
 

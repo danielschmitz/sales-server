@@ -1,5 +1,6 @@
 
 exports.seed = function (knex) {
+  console.log('seed order_product')
   // Deletes ALL existing entries
   return knex('order_product').del()
     .then(function () {

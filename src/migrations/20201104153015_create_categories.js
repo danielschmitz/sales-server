@@ -1,5 +1,6 @@
 
 exports.up = function (knex, _Promise) {
+    console.log('migrate categories')
     return knex.schema.createTable('categories', table => {
         table.increments('id').primary()
         table.string('name', 40).notNullable()
