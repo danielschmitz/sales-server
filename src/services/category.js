@@ -49,7 +49,7 @@ class category {
         const result = await db(table.categories).insert({
             name,
             description
-        }).returning('id')
+        })
         const id = result[0]
         return await db(table.categories).where({ id }).first()
     }

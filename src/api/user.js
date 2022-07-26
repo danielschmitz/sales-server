@@ -90,7 +90,7 @@ router.post('/user', async (req, res) => {
         name,
         email,
         password: hash
-    }).returning('id')
+    })
 
     const id = result[0]
 

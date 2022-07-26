@@ -14,7 +14,7 @@ exports.seed = function (knex) {
           'country': 'Ship Country',
           'phone': 'Ship Phone'
         }
-      ).returning('id')
+      )
 
       return knex('orders').insert([
         {

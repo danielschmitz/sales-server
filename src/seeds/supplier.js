@@ -11,7 +11,7 @@ exports.seed = async function (knex) {
       'country': 'Country Test',
       'phone': '111 222 Test'
     }
-  ).returning('id')
+  )
 
   return knex('suppliers').insert(
     {
