@@ -2,7 +2,7 @@
 
 A minimalistic Sales Server NodeJS API with Express, Knex (sqlite/pg) and Joi.
 
-Demo: soon
+Demo: https://sales-server-demo.herokuapp.com/ 
 
 ## Install
 
@@ -18,3 +18,4 @@ npm run dev
 * Change the JWT_SECRET in your .env file
 
 go to `localhost:3000/api-docs` 
+
