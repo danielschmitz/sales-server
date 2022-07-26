@@ -17,7 +17,7 @@ exports.seed = async function (knex) {
       'companyName': 'Company Test',
       'contactName': 'Contact Test',
       'contactEmail': 'Email Test',
-      'address_id': addressId
+      'address_id': addressId[0]
     }
   )
 }

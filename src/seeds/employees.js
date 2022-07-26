@@ -18,7 +18,7 @@ exports.seed = async function (knex) {
     'title': 'Sr.',
     'birthDate': Date.UTC(1990, 10, 20),
     'hireDate': Date.now(),
-    'address_id': addressBossId
+    'address_id': addressBossId[0]
   })
 
   const addressEmployeeId = await knex('addresses').insert(
@@ -38,8 +38,8 @@ exports.seed = async function (knex) {
     'title': 'Sr.',
     'birthDate': Date.UTC(1999, 8, 13),
     'hireDate': Date.now(),
-    'address_id': addressEmployeeId,
-    'reports_to': bossId
+    'address_id': addressEmployeeId[0],
+    'reports_to': bossId[0]
   })
 
   const employeeId2 = await knex('employees').insert({
@@ -48,8 +48,8 @@ exports.seed = async function (knex) {
     'title': 'Sr.',
     'birthDate': Date.UTC(2002, 7, 21),
     'hireDate': Date.now(),
-    'address_id': addressEmployeeId,
-    'reports_to': bossId
+    'address_id': addressEmployeeId[0],
+    'reports_to': bossId[0]
   })
 
   return [bossId, employeeId1, employeeId2]

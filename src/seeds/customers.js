@@ -12,11 +12,13 @@ exports.seed = async function (knex) {
     }
   )
 
+
+
   return await knex('customers').insert(
     {
       'contactName': 'Contact Test',
       'contactEmail': 'Email Test',
-      'address_id': addressId
+      'address_id': addressId[0]
     }
   )
 }

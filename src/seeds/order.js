@@ -24,7 +24,7 @@ exports.seed = function (knex) {
           "customer_id": 1,
           "employee_id": 1,
           "shipper_id": 1,
-          "to": addressShipId
+          "to": addressShipId[0]
         }
       ])
     })
