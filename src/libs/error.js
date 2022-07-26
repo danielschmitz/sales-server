@@ -1,8 +1,7 @@
 module.exports = app => {
   app.use(async (err, req, res, _next) => {
 
-    //try to handle string errors TODO: verify is string 
-    if (err.code == 'SQLITE_ERROR') {
+    if (isNaN(err.code)) { // any string error
       err.code = 500
     }
 
