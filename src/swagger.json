@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Sales Server",
-    "description": "Documentation API. https://github.com/danielschmitz/sales-server",
+    "description": "Documentation API. https://github.com/danielschmitz/sales-server <br/><br/> <strong>In the heroku deploy, you MUST use <u>HTTPS</u> scheme </strong>",
     "version": "1.0",
     "contact": {
       "name": "Daniel Schmitz",
