@@ -3,5 +3,6 @@ module.exports = {
     categories: 'categories',
     suppliers: 'suppliers',
     addresses: 'addresses',
-    shippers: 'shippers'
+    shippers: 'shippers',
+    products: 'products'
 }

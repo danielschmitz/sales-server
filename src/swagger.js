@@ -126,6 +126,76 @@ const doc = {
                 country: "Country",
                 phone: "Phone"
             }
+        },
+        ProductResult: {
+            id: 1,
+            name: "Chef Anton's Cajun Seasoning",
+            quantityPerUnit: "48 - 6 oz jars",
+            unitsInStock: 53,
+            unitPrice: 22.10,
+            supplier_id: 1,
+            category_id: 1,
+            supplier: {
+                companyName: "Supplier Company Name",
+                contactName: "Supplier Contact Name",
+                contactEmail: "supplier@email.com",
+                address_id: 10,
+                address: {
+                    id: 10,
+                    street: "Street Address",
+                    city: "City",
+                    region: "Region",
+                    postalCode: "Postal Code",
+                    country: "Country",
+                    phone: "Phone"
+                }
+            },
+            category: {
+                id: 1,
+                name: "Category Name",
+                description: "Category Description"
+            }
+        },
+        ProductSimpleResult: {
+            id: 1,
+            name: "Chef Anton's Cajun Seasoning",
+            quantityPerUnit: "48 - 6 oz jars",
+            unitsInStock: 53,
+            unitPrice: 22.10,
+            supplier_id: 1,
+            category_id: 1,
+            supplier_name: "Supplier Contact Name",
+            supplier_company: "Supplier Company Name",
+            supplier_email: "supplier@email.com",
+            category_name: "Category Name"
+        },
+        Product: {
+            name: "Chef Anton's Cajun Seasoning",
+            quantityPerUnit: "48 - 6 oz jars",
+            unitsInStock: 53,
+            unitPrice: 22.10,
+            supplier_id: 1,
+            category_id: 1,
+            supplier: {
+                companyName: "Supplier Company Name",
+                contactName: "Supplier Contact Name",
+                contactEmail: "supplier@email.com",
+                address_id: 10,
+                address: {
+                    id: 10,
+                    street: "Street Address",
+                    city: "City",
+                    region: "Region",
+                    postalCode: "Postal Code",
+                    country: "Country",
+                    phone: "Phone"
+                }
+            },
+            category: {
+                id: 1,
+                name: "Category Name",
+                description: "Category Description"
+            }
         }
     }
 }
@@ -138,7 +208,7 @@ const endpointsFiles = [
     './src/api/category.js',
     './src/api/supplier.js',
     './src/api/shipper.js',
-
+    './src/api/product.js',
 ]
 
 swaggerAutogen(outputFile, endpointsFiles, doc)
