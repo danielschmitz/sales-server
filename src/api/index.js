@@ -6,5 +6,6 @@ module.exports = [
     'category',
     'user',
     'supplier',
-    'shipper'
+    'shipper',
+    'product'
 ]

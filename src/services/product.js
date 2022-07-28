@@ -3,6 +3,7 @@ const BadInputError = require("../errors/BadInputError")
 const NotFoundError = require("../errors/NotFoundError")
 const Joi = require('joi')
 const table = require("../constants/table")
+const { join } = require("path")
 
 class product {
     async validate(data) {
@@ -11,8 +12,14 @@ class product {
                 .min(3)
                 .max(30)
                 .required(),
-            description: Joi.string()
-                .max(30)
+            quantityPerUnit: Joi.string(),
+            unitsInStock: Joi.number().required(),
+            unitPrice: Joi.number.required(),
+            supplier_id: Joi.number.required(),
+            category_id: Joi.number.required(),
+            supplier: Joi.object(),
+            category: Joi.object(),
+            discontinued: Joi.boolean().default(false)
         })
         try {
             await productSchema.validateAsync(data)
@@ -21,10 +28,27 @@ class product {
         }
     }
     /**
-     * Get all Categories
+     * Get all Products 
      */
     async findAll() {
-        return await db(table.products).orderBy('id')
+        return await db(table.products)
+            .orderBy('id')
+            .join(table.categories,
+                `${table.products}.category_id`,
+                `${table.categories}.id`
+            )
+            .join(table.suppliers,
+                `${table.products}.supplier_id`,
+                `${table.suppliers}.id`
+            )
+            .select(
+                `${table.products}.*`,
+                `${table.categories}.name as category_name`,
+                `${table.suppliers}.companyName as supplier_company`,
+                `${table.suppliers}.contactName as supplier_name`,
+                `${table.suppliers}.contactEmail as supplier_email`,
+            )
+
     }
     /**
      * Get a Product by id

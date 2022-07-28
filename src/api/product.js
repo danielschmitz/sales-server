@@ -7,7 +7,7 @@ router.get('/products', async (req, res) => {
     #swagger.tags = ['Products']
     #swagger.summary = 'Get All Products'
     #swagger.responses[200] = { 
-        schema: [ { $ref: "#/definitions/ProductResult" } ],
+        schema: [ { $ref: "#/definitions/ProductSimpleResult" } ],
         description: "A list of products" }
     */
     res.json(await product.findAll())
