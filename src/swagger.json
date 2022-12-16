@@ -839,6 +839,174 @@
           }
         }
       }
+    },
+    "/products": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Get All Products",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "A list of products",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ProductSimpleResult"
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/product/{id}": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Get a Product",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product",
+            "schema": {
+              "$ref": "#/definitions/ProductResult"
+            }
+          },
+          "404": {
+            "description": "Product not found"
+          },
+          "422": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "🔒️ Edit a Product",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "product",
+            "in": "body",
+            "description": "Product Data",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product registered successfully.",
+            "schema": {
+              "$ref": "#/definitions/ProductResult"
+            }
+          },
+          "422": {
+            "description": "Invalid input"
+          },
+          "500": {
+            "description": "There is already a product with that name"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "🔒️ Delete a Product",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product deleted"
+          },
+          "404": {
+            "description": "Product not found"
+          },
+          "422": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/product": {
+      "post": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "🔒️ Create a new Product",
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "product",
+            "in": "body",
+            "description": "Product Data",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product registered successfully.",
+            "schema": {
+              "$ref": "#/definitions/ProductResult"
+            }
+          },
+          "422": {
+            "description": "Invalid input"
+          },
+          "500": {
+            "description": "There is already a product with that name"
+          }
+        }
+      }
     }
   },
   "definitions": {
@@ -1207,6 +1375,259 @@
             "phone": {
               "type": "string",
               "example": "Phone"
+            }
+          }
+        }
+      }
+    },
+    "ProductResult": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number",
+          "example": 1
+        },
+        "name": {
+          "type": "string",
+          "example": "Chef Anton's Cajun Seasoning"
+        },
+        "quantityPerUnit": {
+          "type": "string",
+          "example": "48 - 6 oz jars"
+        },
+        "unitsInStock": {
+          "type": "number",
+          "example": 53
+        },
+        "unitPrice": {
+          "type": "number",
+          "example": 22.1
+        },
+        "supplier_id": {
+          "type": "number",
+          "example": 1
+        },
+        "category_id": {
+          "type": "number",
+          "example": 1
+        },
+        "supplier": {
+          "type": "object",
+          "properties": {
+            "companyName": {
+              "type": "string",
+              "example": "Supplier Company Name"
+            },
+            "contactName": {
+              "type": "string",
+              "example": "Supplier Contact Name"
+            },
+            "contactEmail": {
+              "type": "string",
+              "example": "supplier@email.com"
+            },
+            "address_id": {
+              "type": "number",
+              "example": 10
+            },
+            "address": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number",
+                  "example": 10
+                },
+                "street": {
+                  "type": "string",
+                  "example": "Street Address"
+                },
+                "city": {
+                  "type": "string",
+                  "example": "City"
+                },
+                "region": {
+                  "type": "string",
+                  "example": "Region"
+                },
+                "postalCode": {
+                  "type": "string",
+                  "example": "Postal Code"
+                },
+                "country": {
+                  "type": "string",
+                  "example": "Country"
+                },
+                "phone": {
+                  "type": "string",
+                  "example": "Phone"
+                }
+              }
+            }
+          }
+        },
+        "category": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "number",
+              "example": 1
+            },
+            "name": {
+              "type": "string",
+              "example": "Category Name"
+            },
+            "description": {
+              "type": "string",
+              "example": "Category Description"
+            }
+          }
+        }
+      }
+    },
+    "ProductSimpleResult": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number",
+          "example": 1
+        },
+        "name": {
+          "type": "string",
+          "example": "Chef Anton's Cajun Seasoning"
+        },
+        "quantityPerUnit": {
+          "type": "string",
+          "example": "48 - 6 oz jars"
+        },
+        "unitsInStock": {
+          "type": "number",
+          "example": 53
+        },
+        "unitPrice": {
+          "type": "number",
+          "example": 22.1
+        },
+        "supplier_id": {
+          "type": "number",
+          "example": 1
+        },
+        "category_id": {
+          "type": "number",
+          "example": 1
+        },
+        "supplier_name": {
+          "type": "string",
+          "example": "Supplier Contact Name"
+        },
+        "supplier_company": {
+          "type": "string",
+          "example": "Supplier Company Name"
+        },
+        "supplier_email": {
+          "type": "string",
+          "example": "supplier@email.com"
+        },
+        "category_name": {
+          "type": "string",
+          "example": "Category Name"
+        }
+      }
+    },
+    "Product": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "Chef Anton's Cajun Seasoning"
+        },
+        "quantityPerUnit": {
+          "type": "string",
+          "example": "48 - 6 oz jars"
+        },
+        "unitsInStock": {
+          "type": "number",
+          "example": 53
+        },
+        "unitPrice": {
+          "type": "number",
+          "example": 22.1
+        },
+        "supplier_id": {
+          "type": "number",
+          "example": 1
+        },
+        "category_id": {
+          "type": "number",
+          "example": 1
+        },
+        "supplier": {
+          "type": "object",
+          "properties": {
+            "companyName": {
+              "type": "string",
+              "example": "Supplier Company Name"
+            },
+            "contactName": {
+              "type": "string",
+              "example": "Supplier Contact Name"
+            },
+            "contactEmail": {
+              "type": "string",
+              "example": "supplier@email.com"
+            },
+            "address_id": {
+              "type": "number",
+              "example": 10
+            },
+            "address": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number",
+                  "example": 10
+                },
+                "street": {
+                  "type": "string",
+                  "example": "Street Address"
+                },
+                "city": {
+                  "type": "string",
+                  "example": "City"
+                },
+                "region": {
+                  "type": "string",
+                  "example": "Region"
+                },
+                "postalCode": {
+                  "type": "string",
+                  "example": "Postal Code"
+                },
+                "country": {
+                  "type": "string",
+                  "example": "Country"
+                },
+                "phone": {
+                  "type": "string",
+                  "example": "Phone"
+                }
+              }
+            }
+          }
+        },
+        "category": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "number",
+              "example": 1
+            },
+            "name": {
+              "type": "string",
+              "example": "Category Name"
+            },
+            "description": {
+              "type": "string",
+              "example": "Category Description"
             }
           }
         }
