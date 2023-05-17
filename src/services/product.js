@@ -3,7 +3,6 @@ const BadInputError = require("../errors/BadInputError")
 const NotFoundError = require("../errors/NotFoundError")
 const Joi = require('joi')
 const table = require("../constants/table")
-const { join } = require("path")
 
 class product {
     async validate(data) {
