@@ -4,12 +4,11 @@
  * @type { Object.<string, import("knex").Knex.Config> }
  */
 module.exports = {
-
   development: {
-    client: 'sqlite3',
+    client: "sqlite3",
     useNullAsDefault: true,
     connection: {
-      filename: './dev.sqlite3'
+      filename: "./dev.sqlite3",
     },
     migrations: {
       tableName: "knex_migrations",
@@ -17,18 +16,18 @@ module.exports = {
     },
     seeds: {
       directory: "./src/seeds",
-    }
+    },
   },
 
   production: {
-    client: 'postgresql',
+    client: "postgresql",
     connection: {
       connectionString: process.env.DATABASE_URL,
       ssl: { rejectUnauthorized: false },
     },
     pool: {
       min: 2,
-      max: 10
+      max: 10,
     },
     migrations: {
       tableName: "knex_migrations",
@@ -36,7 +35,6 @@ module.exports = {
     },
     seeds: {
       directory: "./src/seeds",
-    }
-  }
-
+    },
+  },
 }

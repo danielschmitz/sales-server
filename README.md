@@ -12,6 +12,6 @@ npm run createdb
 npm run dev
 ```
 
-Go to `localhost:3000/api-docs` 
+Go to `localhost:3000/api-docs`
 
 Atfer the installation, you can always run the server using the `npm run dev` command.

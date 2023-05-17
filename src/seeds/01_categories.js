@@ -1,43 +1,44 @@
-
 exports.seed = function (knex, _Promise) {
-  console.log('seed categories')
+  console.log("seed categories")
   // Deletes ALL existing entries
-  return knex('categories').del()
+  return knex("categories")
+    .del()
     .then(function () {
       // Inserts seed entries
-      return knex('categories').insert([
+      return knex("categories").insert([
         {
-          "description": "Sweet and savory sauces relishes spreads and seasonings",
-          "name": "Condiments"
+          description:
+            "Sweet and savory sauces relishes spreads and seasonings",
+          name: "Condiments",
         },
         {
-          "description": "Soft drinks coffees teas beers and ales",
-          "name": "Beverages"
+          description: "Soft drinks coffees teas beers and ales",
+          name: "Beverages",
         },
         {
-          "description": "Desserts candies and sweet breads",
-          "name": "Confections"
+          description: "Desserts candies and sweet breads",
+          name: "Confections",
         },
         {
-          "description": "Cheeses",
-          "name": "Dairy Products"
+          description: "Cheeses",
+          name: "Dairy Products",
         },
         {
-          "description": "Breads crackers pasta and cereal",
-          "name": "Grains/Cereals"
+          description: "Breads crackers pasta and cereal",
+          name: "Grains/Cereals",
         },
         {
-          "description": "Prepared meats",
-          "name": "Meat/Poultry"
+          description: "Prepared meats",
+          name: "Meat/Poultry",
         },
         {
-          "description": "Dried fruit and bean curd",
-          "name": "Produce"
+          description: "Dried fruit and bean curd",
+          name: "Produce",
         },
         {
-          "description": "Seaweed and fish",
-          "name": "Seafood"
-        }
+          description: "Seaweed and fish",
+          name: "Seafood",
+        },
       ])
     })
 }

@@ -1,7 +1,7 @@
-module.exports = app => {
+module.exports = (app) => {
   app.use(async (err, req, res, _next) => {
-
-    if (isNaN(err.code)) { // any string error
+    if (isNaN(err.code)) {
+      // any string error
       err.code = 500
     }
 
@@ -11,6 +11,8 @@ module.exports = app => {
     }
 
     const httpCode = err.code || 500
-    res.status(httpCode).send({ message: err.message, code: httpCode, name: err.name })
+    res
+      .status(httpCode)
+      .send({ message: err.message, code: httpCode, name: err.name })
   })
 }

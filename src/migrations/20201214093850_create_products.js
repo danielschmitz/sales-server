@@ -1,19 +1,19 @@
 exports.up = function (knex, _Promise) {
-    console.log('migrate products')
-    return knex.schema.createTable('products', table => {
-        table.increments('id').primary()
-        table.string('name', 100).notNullable()
-        table.string('quantityPerUnit', 100).notNullable()
-        table.decimal('unitPrice').notNullable()
-        table.integer('unitsInStock').notNullable()
-        table.boolean('discontinued')
-        table.integer('supplier_id').unsigned()
-        table.foreign('supplier_id').references('suppliers.id')
-        table.integer('category_id').unsigned()
-        table.foreign('category_id').references('categories.id')
-    })
+  console.log("migrate products")
+  return knex.schema.createTable("products", (table) => {
+    table.increments("id").primary()
+    table.string("name", 100).notNullable()
+    table.string("quantityPerUnit", 100).notNullable()
+    table.decimal("unitPrice").notNullable()
+    table.integer("unitsInStock").notNullable()
+    table.boolean("discontinued")
+    table.integer("supplier_id").unsigned()
+    table.foreign("supplier_id").references("suppliers.id")
+    table.integer("category_id").unsigned()
+    table.foreign("category_id").references("categories.id")
+  })
 }
 
 exports.down = function (knex, _Promise) {
-    return knex.schema.dropTable('products')
+  return knex.schema.dropTable("products")
 }

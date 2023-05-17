@@ -11,10 +11,7 @@
     }
   },
   "basePath": "/api",
-  "schemes": [
-    "http",
-    "https"
-  ],
+  "schemes": ["http", "https"],
   "securityDefinitions": {
     "bearerAuth": {
       "type": "apiKey",
@@ -26,9 +23,7 @@
   "paths": {
     "/hello-world": {
       "get": {
-        "tags": [
-          "Hello World"
-        ],
+        "tags": ["Hello World"],
         "summary": "A simple Hello World",
         "description": "",
         "parameters": [],
@@ -41,9 +36,7 @@
     },
     "/hello-world-auth": {
       "get": {
-        "tags": [
-          "Hello World"
-        ],
+        "tags": ["Hello World"],
         "summary": "🔒️ A simple Hello World with auth",
         "description": "",
         "parameters": [
@@ -62,9 +55,7 @@
     },
     "/auth/info": {
       "get": {
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "summary": "Get info about token",
         "description": "",
         "parameters": [
@@ -83,9 +74,7 @@
     },
     "/auth/login": {
       "post": {
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "summary": "Try to login",
         "description": "",
         "parameters": [
@@ -127,9 +116,7 @@
     },
     "/users": {
       "get": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "Get All Users",
         "description": "",
         "parameters": [],
@@ -151,9 +138,7 @@
     },
     "/user/{id}": {
       "get": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "Get a User",
         "description": "",
         "parameters": [
@@ -180,9 +165,7 @@
         }
       },
       "put": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "🔒️ Edit a User",
         "description": "",
         "parameters": [
@@ -223,9 +206,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "🔒️ Delete a User",
         "description": "",
         "parameters": [
@@ -256,9 +237,7 @@
     },
     "/user": {
       "post": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "Create a new User",
         "description": "",
         "parameters": [
@@ -290,9 +269,7 @@
     },
     "/user/changePassword/{id}": {
       "put": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "🔒️ Change a password",
         "description": "",
         "parameters": [
@@ -338,9 +315,7 @@
     },
     "/categories": {
       "get": {
-        "tags": [
-          "Categories"
-        ],
+        "tags": ["Categories"],
         "summary": "Get All Categories",
         "description": "",
         "parameters": [],
@@ -362,9 +337,7 @@
     },
     "/category/{id}": {
       "get": {
-        "tags": [
-          "Categories"
-        ],
+        "tags": ["Categories"],
         "summary": "Get a Category",
         "description": "",
         "parameters": [
@@ -391,9 +364,7 @@
         }
       },
       "put": {
-        "tags": [
-          "Categories"
-        ],
+        "tags": ["Categories"],
         "summary": "🔒️ Edit a Category",
         "description": "",
         "parameters": [
@@ -434,9 +405,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "Categories"
-        ],
+        "tags": ["Categories"],
         "summary": "🔒️ Delete a Category",
         "description": "",
         "parameters": [
@@ -467,9 +436,7 @@
     },
     "/category": {
       "post": {
-        "tags": [
-          "Categories"
-        ],
+        "tags": ["Categories"],
         "summary": "🔒️ Create a new Category",
         "description": "",
         "parameters": [
@@ -506,9 +473,7 @@
     },
     "/suppliers": {
       "get": {
-        "tags": [
-          "Suppliers"
-        ],
+        "tags": ["Suppliers"],
         "summary": "Get All Suppliers",
         "description": "",
         "parameters": [],
@@ -530,9 +495,7 @@
     },
     "/supplier/{id}": {
       "get": {
-        "tags": [
-          "Suppliers"
-        ],
+        "tags": ["Suppliers"],
         "summary": "Get a Supplier",
         "description": "",
         "parameters": [
@@ -559,9 +522,7 @@
         }
       },
       "put": {
-        "tags": [
-          "Suppliers"
-        ],
+        "tags": ["Suppliers"],
         "summary": "🔒️ Edit a Supplier",
         "description": "",
         "parameters": [
@@ -602,9 +563,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "Suppliers"
-        ],
+        "tags": ["Suppliers"],
         "summary": "🔒️ Delete a Supplier",
         "description": "",
         "parameters": [
@@ -635,9 +594,7 @@
     },
     "/supplier": {
       "post": {
-        "tags": [
-          "Suppliers"
-        ],
+        "tags": ["Suppliers"],
         "summary": "🔒️ Create a new Supplier",
         "description": "",
         "parameters": [
@@ -674,9 +631,7 @@
     },
     "/shippers": {
       "get": {
-        "tags": [
-          "Shippers"
-        ],
+        "tags": ["Shippers"],
         "summary": "Get All Shippers",
         "description": "",
         "parameters": [],
@@ -698,9 +653,7 @@
     },
     "/shipper/{id}": {
       "get": {
-        "tags": [
-          "Shippers"
-        ],
+        "tags": ["Shippers"],
         "summary": "Get a Shipper",
         "description": "",
         "parameters": [
@@ -727,9 +680,7 @@
         }
       },
       "put": {
-        "tags": [
-          "Shippers"
-        ],
+        "tags": ["Shippers"],
         "summary": "🔒️ Edit a Shipper",
         "description": "",
         "parameters": [
@@ -770,9 +721,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "Shippers"
-        ],
+        "tags": ["Shippers"],
         "summary": "🔒️ Delete a Shipper",
         "description": "",
         "parameters": [
@@ -803,9 +752,7 @@
     },
     "/shipper": {
       "post": {
-        "tags": [
-          "Shippers"
-        ],
+        "tags": ["Shippers"],
         "summary": "🔒️ Create a new Shipper",
         "description": "",
         "parameters": [
@@ -842,9 +789,7 @@
     },
     "/products": {
       "get": {
-        "tags": [
-          "Products"
-        ],
+        "tags": ["Products"],
         "summary": "Get All Products",
         "description": "",
         "parameters": [],
@@ -866,9 +811,7 @@
     },
     "/product/{id}": {
       "get": {
-        "tags": [
-          "Products"
-        ],
+        "tags": ["Products"],
         "summary": "Get a Product",
         "description": "",
         "parameters": [
@@ -895,9 +838,7 @@
         }
       },
       "put": {
-        "tags": [
-          "Products"
-        ],
+        "tags": ["Products"],
         "summary": "🔒️ Edit a Product",
         "description": "",
         "parameters": [
@@ -938,9 +879,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "Products"
-        ],
+        "tags": ["Products"],
         "summary": "🔒️ Delete a Product",
         "description": "",
         "parameters": [
@@ -971,9 +910,7 @@
     },
     "/product": {
       "post": {
-        "tags": [
-          "Products"
-        ],
+        "tags": ["Products"],
         "summary": "🔒️ Create a new Product",
         "description": "",
         "parameters": [
