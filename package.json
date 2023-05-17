@@ -8,9 +8,7 @@
     "dev": "nodemon src/index.js",
     "swagger": "node src/swagger.js",
     "createdb": "knex migrate:rollback --all && knex migrate:latest && knex seed:run",
-    "eslint": "npx eslint . --ext .js",
-    "heroku-deploy": "git push heroku master",
-    "heroku-createdb": "heroku run npm run createdb"
+    "eslint": "npx eslint . --ext .js"
   },
   "keywords": [],
   "author": "Daniel Schmitz",

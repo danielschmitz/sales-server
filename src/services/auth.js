@@ -10,6 +10,8 @@ const BadInputError = require('../errors/BadInputError')
 const NotFoundError = require('../errors/NotFoundError')
 const table = require('../constants/table')
 
+const JWT_SECRET = "47bce5c74f589f4867dbd57e9ca9f808"
+
 const userSchema = Joi.object({
     password: Joi.string()
         .min(3)
@@ -45,7 +47,7 @@ class auth {
             throw new UnauthorizedError("Token not present")
         }
         // eslint-disable-next-line no-undef
-        jwt.verify(token, process.env.JWT_SECRET, function (err, auth) {
+        jwt.verify(token, JWT_SECRET, function (err, auth) {
             if (err) {
                 throw new UnauthorizedError("Unauthorized")
             } else {
@@ -77,7 +79,7 @@ class auth {
                 email: user.email
             },
             // eslint-disable-next-line no-undef
-            process.env.JWT_SECRET,
+            JWT_SECRET,
             { expiresIn: '1d' }
         )
     }

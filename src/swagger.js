@@ -3,7 +3,7 @@ const swaggerAutogen = require('swagger-autogen')()
 const doc = {
     info: {
         title: 'Sales Server',
-        description: 'Documentation API. https://github.com/danielschmitz/sales-server <br/><br/> <strong>In the heroku deploy, you MUST use <u>HTTPS</u> scheme </strong>',
+        description: 'Documentation API. https://github.com/danielschmitz/sales-server <br/><br/>',
         version: '1.0',
         contact: {
             name: 'Daniel Schmitz',
